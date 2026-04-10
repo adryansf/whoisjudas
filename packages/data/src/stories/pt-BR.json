@@ -1,0 +1,768 @@
+{
+	"stories": [
+		{
+			"id": "noahs-ark",
+			"title": "A Arca de Noé",
+			"description": "O grande dilúvio está chegando. Os animais estão entrando na arca dois a dois. Deus instruiu Noé a construir uma arca para salvar sua família e os animais.",
+			"characters": [
+				{ "id": "noah", "name": "Noé" },
+				{ "id": "naamah", "name": "Naamá (Esposa de Noé)" },
+				{ "id": "shem", "name": "Sem (Filho de Noé)" },
+				{ "id": "ham", "name": "Cam (Filho de Noé)" },
+				{ "id": "japheth", "name": "Jafé (Filho de Noé)" },
+				{ "id": "shem-wife", "name": "Esposa de Sem" },
+				{ "id": "ham-wife", "name": "Esposa de Cam" },
+				{ "id": "japheth-wife", "name": "Esposa de Jafé" },
+				{ "id": "dove", "name": "Uma Pomba" },
+				{ "id": "raven", "name": "Um Corvo" },
+				{ "id": "elephant", "name": "Um Elefante" },
+				{ "id": "lion", "name": "Um Leão" }
+			]
+		},
+		{
+			"id": "david-goliath",
+			"title": "Davi e Golias",
+			"description": "Os israelitas enfrentam os filisteus no Vale de Elá. Um jovem pastor se adianta para desafiar o gigante guerreiro Golias.",
+			"characters": [
+				{ "id": "david", "name": "Davi" },
+				{ "id": "goliath", "name": "Golias" },
+				{ "id": "saul", "name": "Rei Saul" },
+				{ "id": "jonathan", "name": "Jônatas, o Príncipe Herdeiro" },
+				{ "id": "eliab", "name": "Eliabe (Irmão de Davi)" },
+				{ "id": "abinadab", "name": "Abinadabe (Irmão de Davi)" },
+				{ "id": "shammah", "name": "Simeia (Irmão de Davi)" },
+				{ "id": "jesse", "name": "Jessé (Pai de Davi)" },
+				{ "id": "israelite-soldier-1", "name": "Um Soldado Israelita" },
+				{ "id": "israelite-soldier-2", "name": "Um Soldado Israelita" },
+				{ "id": "philistine-warrior-1", "name": "Um Guerreiro Filisteu" },
+				{ "id": "philistine-warrior-2", "name": "Um Guerreiro Filisteu" }
+			]
+		},
+		{
+			"id": "last-supper",
+			"title": "A Última Ceia",
+			"description": "Jesus se reúne com seus doze discípulos para a refeição da Páscoa. Ele sabe que um vai traí-lo. A atmosfera está tensa com expectativa.",
+			"characters": [
+				{ "id": "jesus", "name": "Jesus" },
+				{ "id": "peter", "name": "Pedro" },
+				{ "id": "john", "name": "João" },
+				{ "id": "james", "name": "Tiago" },
+				{ "id": "andrew", "name": "André" },
+				{ "id": "philip", "name": "Filipe" },
+				{ "id": "thomas", "name": "Tomé" },
+				{ "id": "matthew", "name": "Mateus" },
+				{ "id": "james-son-alpheus", "name": "Tiago (Filho de Alfeu)" },
+				{ "id": "thaddaeus", "name": "Tadeu" },
+				{ "id": "simon-the-zealot", "name": "Simão, o Zelote" },
+				{ "id": "bartholomew", "name": "Bartolomeu" }
+			]
+		},
+		{
+			"id": "ten-commandments",
+			"title": "Os Dez Mandamentos",
+			"description": "Deus entrega a Moisés as tábuas da lei no Monte Sinai para guiar seu povo.",
+			"characters": [
+				{ "id": "moses", "name": "Moisés, o Libertador" },
+				{ "id": "god", "name": "Voz de Deus (O Eu Sou)" },
+				{ "id": "aaron", "name": "Arão, o Sumo Sacerdote" },
+				{ "id": "miriam", "name": "Miriã, a Profetisa" },
+				{ "id": "joshua", "name": "Josué, o Comandante" },
+				{ "id": "jethro", "name": "Jetro, o Sacerdote de Midiã" },
+				{ "id": "hur", "name": "Hur, o Nobre de Judá" },
+				{ "id": "zipporah", "name": "Zípora, Esposa de Moisés" },
+				{ "id": "golden-calf", "name": "O Bezerro de Ouro" },
+				{ "id": "sacrificial-lamb", "name": "Cordeiro do Sacrifício" },
+				{ "id": "quail", "name": "Codorniz do Deserto" },
+				{ "id": "donkey", "name": "Jumento de Carga" }
+			]
+		},
+		{
+			"id": "multiplication-loaves",
+			"title": "A Multiplicação dos Pães",
+			"description": "Jesus alimenta uma multidão de cinco mil pessoas com apenas cinco pães e dois peixes.",
+			"characters": [
+				{ "id": "jesus", "name": "Jesus Cristo" },
+				{ "id": "philip", "name": "Filipe (Apóstolo)" },
+				{ "id": "andrew", "name": "André (Apóstolo)" },
+				{ "id": "young-boy", "name": "O Menino dos Pães e Peixes" },
+				{ "id": "peter", "name": "Simão Pedro (Apóstolo)" },
+				{ "id": "john", "name": "João (Apóstolo)" },
+				{ "id": "james", "name": "Tiago (Apóstolo)" },
+				{ "id": "crowd-man-1", "name": "Homem da Multidão" },
+				{ "id": "crowd-man-2", "name": "Homem da Multidão" },
+				{ "id": "crowd-woman-1", "name": "Mulher da Multidão" },
+				{ "id": "crowd-woman-2", "name": "Mulher da Multidão" },
+				{ "id": "crowd-child", "name": "Criança da Multidão" }
+			]
+		},
+		{
+			"id": "ten-plagues",
+			"title": "As Dez Pragas do Egito",
+			"description": "Deus envia pragas sobre o Egito para convencer o Faraó a libertar o povo de Israel da escravidão.",
+			"characters": [
+				{ "id": "moses", "name": "Moisés" },
+				{ "id": "aaron", "name": "Arão" },
+				{ "id": "pharaoh", "name": "Faraó (Ramsés)" },
+				{ "id": "magician-1", "name": "Mago Egípcio 1" },
+				{ "id": "magician-2", "name": "Mago Egípcio 2" },
+				{ "id": "pharaoh-son", "name": "Filho Primogênito do Faraó" },
+				{ "id": "egyptian-mother", "name": "Mãe Egípcia" },
+				{ "id": "israelite-slave", "name": "Escravo Israelita" },
+				{ "id": "frog", "name": "Rã (Segunda Praga)" },
+				{ "id": "lice", "name": "Piolho (Terceira Praga)" },
+				{ "id": "locust", "name": "Gafanhoto (Oitava Praga)" },
+				{ "id": "livestock", "name": "Gado Egípcio" }
+			]
+		},
+		{
+			"id": "golden-calf",
+			"title": "O Bezerro de Ouro",
+			"description": "Enquanto Moisés recebe os mandamentos no monte, o povo perde a paciência e constrói um ídolo para adorar.",
+			"characters": [
+				{ "id": "moses", "name": "Moisés" },
+				{ "id": "aaron", "name": "Arão" },
+				{ "id": "joshua", "name": "Josué" },
+				{ "id": "hur", "name": "Hur (Líder Israelita)" },
+				{ "id": "israelite-man", "name": "Homem da Multidão" },
+				{ "id": "israelite-woman", "name": "Mulher da Multidão" },
+				{ "id": "israelite-rebel", "name": "Israelita Rebelde" },
+				{ "id": "levite-warrior", "name": "Guerreiro Levita" },
+				{ "id": "golden-calf-idol", "name": "O Bezerro de Ouro (Ídolo)" },
+				{ "id": "sacrificial-ox", "name": "Boi do Sacrifício" },
+				{ "id": "sheep", "name": "Ovelha do Rebanho" },
+				{ "id": "donkey", "name": "Jumento" }
+			]
+		},
+		{
+			"id": "jesus-walks-on-water",
+			"title": "Jesus Anda Sobre as Águas",
+			"description": "Após alimentar a multidão, Jesus caminha sobre o mar revolto ao encontro dos discípulos no barco.",
+			"characters": [
+				{ "id": "jesus", "name": "Jesus Cristo" },
+				{ "id": "peter", "name": "Simão Pedro" },
+				{ "id": "john", "name": "João (Apóstolo)" },
+				{ "id": "james", "name": "Tiago (Apóstolo)" },
+				{ "id": "andrew", "name": "André (Apóstolo)" },
+				{ "id": "philip", "name": "Filipe (Apóstolo)" },
+				{ "id": "matthew", "name": "Mateus (Apóstolo)" },
+				{ "id": "thomas", "name": "Tomé (Apóstolo)" },
+				{ "id": "bartholomew", "name": "Bartolomeu (Apóstolo)" },
+				{ "id": "thaddeus", "name": "Tadeu (Apóstolo)" },
+				{ "id": "simon-zealot", "name": "Simão, o Zelote" },
+				{ "id": "fish-galilee", "name": "Peixe do Mar da Galileia" }
+			]
+		},
+		{
+			"id": "resurrection-lazarus",
+			"title": "A Ressurreição de Lázaro",
+			"description": "Jesus demonstra seu poder sobre a morte ao chamar seu amigo Lázaro para fora do sepulcro após quatro dias.",
+			"characters": [
+				{ "id": "jesus", "name": "Jesus Cristo" },
+				{ "id": "lazarus", "name": "Lázaro de Betânia" },
+				{ "id": "martha", "name": "Marta" },
+				{ "id": "mary", "name": "Maria" },
+				{ "id": "thomas", "name": "Tomé (Apóstolo)" },
+				{ "id": "peter", "name": "Simão Pedro" },
+				{ "id": "john", "name": "João (Apóstolo)" },
+				{ "id": "james", "name": "Tiago (Apóstolo)" },
+				{ "id": "jewish-mourner-1", "name": "Judeu Consolador" },
+				{ "id": "jewish-mourner-2", "name": "Testemunha Ocular" },
+				{ "id": "stone-mover", "name": "Homem que removeu a pedra" },
+				{ "id": "helper", "name": "Ajudante que desatou as faixas" }
+			]
+		},
+		{
+			"id": "garden-of-eden",
+			"title": "A Criação e a Queda no Éden",
+			"description": "Adão e Eva vivem em harmonia no paraíso até serem tentados pela serpente a desobedecer a Deus.",
+			"characters": [
+				{ "id": "adam", "name": "Adão" },
+				{ "id": "eve", "name": "Eva" },
+				{ "id": "god-voice", "name": "Deus (Voz no Jardim)" },
+				{ "id": "cherub-guard", "name": "Querubim (Guardião do Éden)" },
+				{ "id": "serpent", "name": "A Serpente (O Tentador)" },
+				{ "id": "lion", "name": "Leão" },
+				{ "id": "lamb", "name": "Cordeiro" },
+				{ "id": "eagle", "name": "Águia" },
+				{ "id": "elephant", "name": "Elefante" },
+				{ "id": "horse", "name": "Cavalo" },
+				{ "id": "ox", "name": "Boi" },
+				{ "id": "dove", "name": "Pomba" }
+			]
+		},
+		{
+			"id": "manna-in-the-desert",
+			"title": "O Maná no Deserto",
+			"description": "Os israelitas clamam por comida no deserto, e Deus envia o maná do céu e codornas para sustentá-los.",
+			"characters": [
+				{ "id": "moses", "name": "Moisés" },
+				{ "id": "aaron", "name": "Arão" },
+				{ "id": "god-voice", "name": "Voz de Deus" },
+				{ "id": "joshua", "name": "Josué" },
+				{ "id": "israelite-elder", "name": "Ancião de Israel" },
+				{ "id": "prince-congregation", "name": "Príncipe da Congregação" },
+				{ "id": "murmuring-israelite", "name": "Israelita Murmurador" },
+				{ "id": "manna-collector", "name": "Coletor de Maná" },
+				{ "id": "israelite-mother", "name": "Mulher Israelita" },
+				{ "id": "israelite-child", "name": "Criança Israelita" },
+				{ "id": "camp-sentry", "name": "Sentinela do Acampamento" },
+				{ "id": "desert-quail", "name": "Codorna do Deserto" }
+			]
+		},
+		{
+			"id": "water-from-the-rock",
+			"title": "Água da Rocha",
+			"description": "O povo de Israel clama por sede no deserto, e Deus ordena que Moisés fira a rocha para que dela brote água.",
+			"characters": [
+				{ "id": "moses", "name": "Moisés" },
+				{ "id": "aaron", "name": "Arão" },
+				{ "id": "god-voice", "name": "Voz de Deus" },
+				{ "id": "joshua", "name": "Josué" },
+				{ "id": "israelite-elder-1", "name": "Ancião de Israel (Testemunha)" },
+				{ "id": "israelite-elder-2", "name": "Outro Ancião do Povo" },
+				{ "id": "murmuring-man", "name": "Israelita Sedento (Murmurador)" },
+				{ "id": "israelite-mother", "name": "Mãe Israelita" },
+				{ "id": "israelite-child", "name": "Criança Israelita" },
+				{ "id": "israelite-shepherd", "name": "Pastor do Rebanho" },
+				{ "id": "camp-sentry", "name": "Sentinela do Acampamento" },
+				{ "id": "thirsty-sheep", "name": "Ovelha Sedenta" }
+			]
+		},
+		{
+			"id": "pentecost",
+			"title": "Pentecostes",
+			"description": "O Espírito Santo desce sobre os discípulos em línguas de fogo, capacitando-os a falar em diversas línguas perante uma multidão.",
+			"characters": [
+				{ "id": "peter", "name": "Simão Pedro (Apóstolo)" },
+				{ "id": "mary-mother", "name": "Maria (Mãe de Jesus)" },
+				{ "id": "john", "name": "João (Apóstolo)" },
+				{ "id": "matthias", "name": "Matias (O Novo Apóstolo)" },
+				{ "id": "andrew", "name": "André (Apóstolo)" },
+				{ "id": "james", "name": "Tiago (Apóstolo)" },
+				{ "id": "devout-jew", "name": "Judeu Piedoso (Multidão)" },
+				{ "id": "parthian-visitor", "name": "Visitante da Partia" },
+				{ "id": "egyptian-visitor", "name": "Visitante do Egito" },
+				{ "id": "roman-visitor", "name": "Visitante de Roma" },
+				{ "id": "mocking-man", "name": "Homem Escarnecedor (Crítico)" },
+				{ "id": "new-convert", "name": "Novo Convertido (Um dos três mil)" }
+			]
+		},
+		{
+			"id": "healing-of-the-paralytic",
+			"title": "A Cura do Paralítico",
+			"description": "Quatro amigos abrem um buraco no telhado de uma casa para descer um paralítico até Jesus, que o perdoa e o cura perante a multidão.",
+			"characters": [
+				{ "id": "jesus", "name": "Jesus Cristo" },
+				{ "id": "paralytic-man", "name": "O Homem Paralítico" },
+				{ "id": "friend-1", "name": "Amigo (Carregador da Maca 1)" },
+				{ "id": "friend-2", "name": "Amigo (Carregador da Maca 2)" },
+				{ "id": "friend-3", "name": "Amigo (Carregador da Maca 3)" },
+				{ "id": "friend-4", "name": "Amigo (Carregador da Maca 4)" },
+				{ "id": "simon-peter", "name": "Simão Pedro (Dono da Casa)" },
+				{ "id": "scribe-critic", "name": "Escriba (Questionador)" },
+				{ "id": "pharisee-observer", "name": "Fariseu (Observador da Lei)" },
+				{
+					"id": "crowd-blocker",
+					"name": "Homem na Porta (Bloqueando a entrada)"
+				},
+				{ "id": "crowd-witness", "name": "Mulher da Multidão (Testemunha)" },
+				{ "id": "apostle-john", "name": "João (Apóstolo)" }
+			]
+		},
+		{
+			"id": "samaritan-woman",
+			"title": "A Mulher Samaritana",
+			"description": "Ao lado do poço de Jacó, Jesus revela sua identidade messiânica a uma mulher samaritana, transformando sua vida e a de sua cidade.",
+			"characters": [
+				{ "id": "jesus", "name": "Jesus Cristo" },
+				{ "id": "samaritan-woman", "name": "A Mulher Samaritana" },
+				{ "id": "peter", "name": "Simão Pedro (Apóstolo)" },
+				{ "id": "john", "name": "João (Apóstolo)" },
+				{
+					"id": "james-son-zebedee",
+					"name": "Tiago, filho de Zebedeu (Apóstolo)"
+				},
+				{ "id": "andrew", "name": "André (Apóstolo)" },
+				{ "id": "philip", "name": "Filipe (Apóstolo)" },
+				{ "id": "bartholomew", "name": "Bartolomeu (Apóstolo)" },
+				{ "id": "matthew", "name": "Mateus (Apóstolo)" },
+				{ "id": "thomas", "name": "Tomé (Apóstolo)" },
+				{
+					"id": "james-son-alphaeus",
+					"name": "Tiago, filho de Alfeu (Apóstolo)"
+				},
+				{ "id": "thaddeus", "name": "Tadeu (Apóstolo)" }
+			]
+		},
+		{
+			"id": "miraculous-catch",
+			"title": "A Pesca Milagrosa",
+			"description": "Após uma noite de pesca frustrada, Jesus ordena que Pedro lance as redes em águas profundas, resultando em uma captura sobrenatural.",
+			"characters": [
+				{ "id": "jesus", "name": "Jesus Cristo" },
+				{ "id": "simon-peter", "name": "Simão Pedro" },
+				{ "id": "james-son-zebedee", "name": "Tiago (Sócio de Pedro)" },
+				{ "id": "john-son-zebedee", "name": "João (Sócio de Pedro)" },
+				{ "id": "andrew", "name": "André (Irmão de Pedro)" },
+				{
+					"id": "partner-fisherman-1",
+					"name": "Pescador Sócio (da outra barca)"
+				},
+				{ "id": "partner-fisherman-2", "name": "Ajudante de Pesca" },
+				{ "id": "crowd-man", "name": "Homem da Multidão (na praia)" },
+				{ "id": "crowd-woman", "name": "Mulher da Multidão (na praia)" },
+				{ "id": "crowd-child", "name": "Criança da Multidão" },
+				{ "id": "listener-shore", "name": "Ouvinte da beira do lago" },
+				{ "id": "great-shoal-fish", "name": "Grande Cardume de Peixes" }
+			]
+		},
+		{
+			"id": "balaam-and-the-donkey",
+			"title": "Balaão e a Jumenta",
+			"description": "O profeta Balaão é confrontado por um anjo no caminho para Moabe, enquanto sua jumenta fala para avisá-lo do perigo oculto.",
+			"characters": [
+				{ "id": "balaam", "name": "Balaão (O Profeta)" },
+				{ "id": "angel-of-the-lord", "name": "Anjo do Senhor" },
+				{ "id": "servant-1", "name": "Servo de Balaão 1" },
+				{ "id": "servant-2", "name": "Servo de Balaão 2" },
+				{ "id": "moabite-prince-1", "name": "Príncipe de Moabe" },
+				{ "id": "moabite-prince-2", "name": "Príncipe de Moabe" },
+				{ "id": "moabite-prince-3", "name": "Príncipe de Moabe" },
+				{ "id": "moabite-noble-1", "name": "Nobre de Moabe" },
+				{ "id": "moabite-noble-2", "name": "Nobre de Moabe" },
+				{ "id": "balaks-messenger", "name": "Mensageiro de Balaque" },
+				{ "id": "moabite-official", "name": "Oficial Moabita" },
+				{ "id": "the-donkey", "name": "A Jumenta de Balaão" }
+			]
+		},
+		{
+			"id": "transfiguration",
+			"title": "A Transfiguração",
+			"description": "No topo de um monte, Jesus revela sua glória divina, conversando com Moisés e Elias perante Pedro, Tiago e João.",
+			"characters": [
+				{ "id": "jesus", "name": "Jesus Cristo (Transfigurado)" },
+				{ "id": "moses", "name": "Moisés (O Profeta)" },
+				{ "id": "elijah", "name": "Elias (O Profeta)" },
+				{ "id": "peter", "name": "Simão Pedro (Apóstolo)" },
+				{ "id": "james", "name": "Tiago, filho de Zebedeu (Apóstolo)" },
+				{ "id": "john", "name": "João (Apóstolo)" },
+				{ "id": "voice-of-god", "name": "A Voz de Deus (O Pai)" },
+				{ "id": "luminous-cloud", "name": "Nuvem Luminosa (O Fenômeno)" },
+				{
+					"id": "resplendent-garments",
+					"name": "Vestes Resplandecentes (de Jesus)"
+				},
+				{ "id": "mountain-peak", "name": "Cume do Monte (O Cenário)" },
+				{ "id": "three-tents", "name": "As Três Tendas (propostas por Pedro)" },
+				{ "id": "dazzling-light", "name": "Luz Resplandecente (O Esplendor)" }
+			]
+		},
+		{
+			"id": "conversion-of-paul",
+			"title": "A Conversão de Saulo",
+			"description": "O perseguidor Saulo é transformado após um encontro com Jesus no caminho de Damasco, sendo curado por Ananias e escapando de seus opositores.",
+			"characters": [
+				{ "id": "saul-of-tarsus", "name": "Saulo de Tarso" },
+				{ "id": "jesus-christ", "name": "Jesus Cristo (A Voz)" },
+				{
+					"id": "high-priest",
+					"name": "Sumo Sacerdote (Autoridade das cartas)"
+				},
+				{ "id": "ananias", "name": "Ananias de Damasco" },
+				{
+					"id": "judas-straight-street",
+					"name": "Judas (Dono da casa na Rua Direita)"
+				},
+				{
+					"id": "travel-companion-1",
+					"name": "Companheiro de Viagem 1 (Ouvinte)"
+				},
+				{
+					"id": "travel-companion-2",
+					"name": "Companheiro de Viagem 2 (Atônito)"
+				},
+				{ "id": "hand-guide", "name": "O Guia (Que o levou pela mão)" },
+				{
+					"id": "damascus-disciple",
+					"name": "Discípulo de Damasco (Que o acolheu)"
+				},
+				{
+					"id": "puzzled-jew",
+					"name": "Judeu da Sinagoga (Perplexo com a pregação)"
+				},
+				{
+					"id": "conspirator",
+					"name": "Conspirador de Damasco (Que tramou contra ele)"
+				},
+				{
+					"id": "sauls-follower",
+					"name": "Seguidor de Saulo (Que o baixou no cesto)"
+				}
+			]
+		},
+		{
+			"id": "joseph-sold-by-brothers",
+			"title": "José Vendido como Escravo",
+			"description": "Invejado por seus irmãos por ser o favorito do pai, José é jogado em uma cisterna e depois vendido a mercadores que seguiam para o Egito.",
+			"characters": [
+				{ "id": "joseph", "name": "José" },
+				{ "id": "reuben", "name": "Rúben (O irmão mais velho)" },
+				{ "id": "judah", "name": "Judá (O que propôs a venda)" },
+				{ "id": "simeon", "name": "Simeão (Irmão)" },
+				{ "id": "levi", "name": "Levi (Irmão)" },
+				{ "id": "issachar", "name": "Issacar (Irmão)" },
+				{ "id": "zebulun", "name": "Zebulom (Irmão)" },
+				{ "id": "dan", "name": "Dã (Irmão)" },
+				{ "id": "naphtali", "name": "Naftali (Irmão)" },
+				{ "id": "gad", "name": "Gade (Irmão)" },
+				{ "id": "asher", "name": "Aser (Irmão)" },
+				{
+					"id": "ishmaelite-merchant",
+					"name": "Mercador Ismaelita (O comprador)"
+				}
+			]
+		},
+		{
+			"id": "joseph-interprets-dreams",
+			"title": "José Interpreta os Sonhos de Faraó",
+			"description": "Tirado da prisão, José interpreta os sonhos perturbadores de Faraó sobre as vacas e espigas, sendo nomeado governador do Egito.",
+			"characters": [
+				{ "id": "joseph", "name": "José" },
+				{ "id": "pharaoh", "name": "Faraó (Rei do Egito)" },
+				{ "id": "chief-cupbearer", "name": "Copeiro-mor (Quem indicou José)" },
+				{
+					"id": "potipherah",
+					"name": "Poti-Fera (Sacerdote de Om e pai de Asenate)"
+				},
+				{ "id": "asenath", "name": "Asenate (Dada a José como esposa)" },
+				{
+					"id": "prison-guard",
+					"name": "Guarda da prisão (Quem libertou José)"
+				},
+				{
+					"id": "magician-egypt",
+					"name": "Mago do Egito (Incapaz de interpretar)"
+				},
+				{ "id": "wise-man-egypt", "name": "Sábio do Egito" },
+				{
+					"id": "pharaohs-servant",
+					"name": "Servo de Faraó (Presente na corte)"
+				},
+				{
+					"id": "seven-fat-cows",
+					"name": "Sete Vacas Gordas (Do sonho de Faraó)"
+				},
+				{
+					"id": "seven-lean-cows",
+					"name": "Sete Vacas Magras (Do sonho de Faraó)"
+				},
+				{ "id": "ear-of-corn", "name": "Espiga de milho (Do sonho de Faraó)" }
+			]
+		},
+		{
+			"id": "jonah-and-the-great-fish",
+			"title": "Jonas e o Grande Peixe",
+			"description": "Ao tentar fugir de sua missão divina, Jonas enfrenta uma tempestade no mar, é lançado ao mar pelos marinheiros e engolido por um grande peixe.",
+			"characters": [
+				{ "id": "jonah", "name": "Jonas (O Profeta)" },
+				{ "id": "shipmaster", "name": "Mestre do Navio (O Capitão)" },
+				{
+					"id": "mariner-crying",
+					"name": "Marinheiro que clamou ao seu deus"
+				},
+				{
+					"id": "mariner-jettisoning",
+					"name": "Marinheiro que lançou a carga ao mar"
+				},
+				{
+					"id": "mariner-casting-lots",
+					"name": "Marinheiro que lançou as sortes"
+				},
+				{
+					"id": "mariner-questioning",
+					"name": "Marinheiro que interrogou Jonas"
+				},
+				{
+					"id": "mariner-rowing",
+					"name": "Marinheiro que remou com força"
+				},
+				{
+					"id": "mariner-praying",
+					"name": "Marinheiro que clamou ao Senhor"
+				},
+				{
+					"id": "mariner-throwing",
+					"name": "Marinheiro que lançou Jonas ao mar"
+				},
+				{
+					"id": "mariner-fearing",
+					"name": "Marinheiro que ofereceu sacrifícios e votos"
+				},
+				{ "id": "the-great-fish", "name": "O Grande Peixe" },
+				{ "id": "the-tempest", "name": "A Tempestade" }
+			]
+		},
+		{
+			"id": "crossing-the-red-sea",
+			"title": "A Travessia do Mar Vermelho",
+			"description": "Sob o comando de Moisés, o povo de Israel atravessa o mar em terra seca, celebrando a libertação enquanto o exército de Faraó é detido pelas águas.",
+			"characters": [
+				{ "id": "moses", "name": "Moisés (Líder de Israel)" },
+				{ "id": "pharaoh", "name": "Faraó (Rei do Egito)" },
+				{ "id": "miriam", "name": "Miriã (A Profetisa)" },
+				{ "id": "aaron", "name": "Arão (Irmão de Moisés)" },
+				{ "id": "angel-of-god", "name": "Anjo de Deus (O Protetor)" },
+				{ "id": "pharaohs-captain", "name": "Capitão dos Carros de Faraó" },
+				{ "id": "israelite-man", "name": "Homem de Israel" },
+				{
+					"id": "israelite-woman",
+					"name": "Mulher de Israel (Seguidora de Miriã)"
+				},
+				{ "id": "israelite-child", "name": "Criança de Israel (Nova Geração)" },
+				{ "id": "egyptian-soldier", "name": "Soldado Egípcio (Perseguidor)" },
+				{ "id": "pharaohs-horse", "name": "Cavalo de Faraó (O Animal)" },
+				{ "id": "moses-staff", "name": "Cajado de Moisés (O Item)" }
+			]
+		},
+		{
+			"id": "daniel-in-the-lions-den",
+			"title": "Daniel na Cova dos Leões",
+			"description": "Vítima de uma conspiração política, o profeta Daniel é lançado em uma cova com leões famintos, mas é preservado milagrosamente por Deus.",
+			"characters": [
+				{ "id": "daniel", "name": "Daniel (O Governador)" },
+				{ "id": "king-darius", "name": "Rei Dário (O Medo)" },
+				{
+					"id": "conspiring-president",
+					"name": "Presidente Conspirador (Colega de Daniel)"
+				},
+				{ "id": "rival-president", "name": "Outro Presidente Rival" },
+				{
+					"id": "accusing-satrap",
+					"name": "Sátrapa Delator (Representando os 120)"
+				},
+				{
+					"id": "conspirators-wife",
+					"name": "Esposa do Acusador (Daniel 6:24)"
+				},
+				{
+					"id": "conspirators-child",
+					"name": "Filho do Acusador (Daniel 6:24)"
+				},
+				{
+					"id": "palace-musician",
+					"name": "Músico do Rei (Cuja música foi dispensada)"
+				},
+				{ "id": "den-guard", "name": "Guarda da Cova (Quem levou Daniel)" },
+				{
+					"id": "angel-of-god",
+					"name": "Anjo de Deus (Que fechou a boca dos leões)"
+				},
+				{ "id": "hungry-lion", "name": "Leão Faminto (O Animal)" },
+				{ "id": "sealed-stone", "name": "A Pedra Selada (O Elemento)" }
+			]
+		},
+		{
+			"id": "shadrach-meshach-abednego-furnace",
+			"title": "A Fornalha de Fogo Ardente",
+			"description": "Três jovens hebreus recusam-se a adorar a estátua de ouro do Rei Nabucodonosor e são lançados em uma fornalha, onde são protegidos por um ser celestial.",
+			"characters": [
+				{ "id": "shadrach", "name": "Sadraque" },
+				{ "id": "meshach", "name": "Mesaque" },
+				{ "id": "abednego", "name": "Abede-Nego" },
+				{ "id": "king-nebuchadnezzar", "name": "Rei Nabucodonosor" },
+				{
+					"id": "the-fourth-man",
+					"name": "O Quarto Homem (O Anjo/Filho de Deus)"
+				},
+				{ "id": "chaldean-accuser", "name": "Caldeu (O Acusador Malicioso)" },
+				{ "id": "the-herald", "name": "O Arauto (Quem proclamou o decreto)" },
+				{
+					"id": "mighty-soldier",
+					"name": "Soldado Forte (Quem os amarrou e morreu pelo calor)"
+				},
+				{
+					"id": "satrap-official",
+					"name": "Sátrapa (Representando os governantes)"
+				},
+				{
+					"id": "musician-orchestra",
+					"name": "Músico da Corte (Quem tocava a harpa e a flauta)"
+				},
+				{
+					"id": "royal-counselor",
+					"name": "Conselheiro do Rei (Quem testemunhou o milagre)"
+				},
+				{
+					"id": "captain-of-guard",
+					"name": "Capitão da Guarda (Executor da ordem)"
+				}
+			]
+		},
+		{
+			"id": "nativity-of-jesus",
+			"title": "O Nascimento de Jesus",
+			"description": "O Salvador nasce em Belém durante um recenseamento, sendo adorado por pastores e magos enquanto anjos celebram nos céus.",
+			"characters": [
+				{ "id": "jesus-christ", "name": "Jesus Cristo (Recém-nascido)" },
+				{ "id": "virgin-mary", "name": "Maria (Mãe de Jesus)" },
+				{ "id": "saint-joseph", "name": "José (Pai terreno)" },
+				{ "id": "angel-of-the-lord", "name": "Anjo do Senhor (Mensageiro)" },
+				{ "id": "shepherd-1", "name": "Primeiro Pastor (Testemunha no campo)" },
+				{
+					"id": "shepherd-2",
+					"name": "Segundo Pastor (Visitante da Manjedoura)"
+				},
+				{ "id": "wise-man-1", "name": "Mago do Oriente 1 (Visitante)" },
+				{ "id": "wise-man-2", "name": "Mago do Oriente 2" },
+				{ "id": "king-herod", "name": "Rei Herodes (O Opositor)" },
+				{
+					"id": "chief-priest",
+					"name": "Principal Sacerdote (Consultado por Herodes)"
+				},
+				{
+					"id": "scribe-of-the-people",
+					"name": "Escriba do Povo (Conhecedor da profecia)"
+				},
+				{
+					"id": "caesar-augustus",
+					"name": "César Augusto (Imperador do decreto)"
+				}
+			]
+		},
+		{
+			"id": "baptism-of-jesus",
+			"title": "O Batismo de Jesus",
+			"description": "Jesus é batizado por João Batista no Rio Jordão, momento em que os céus se abrem e o Espírito Santo desce sobre Ele, acompanhado pela voz do Pai.",
+			"characters": [
+				{ "id": "jesus-christ", "name": "Jesus Cristo" },
+				{ "id": "john-the-baptist", "name": "João Batista" },
+				{ "id": "voice-of-god", "name": "A Voz de Deus (O Pai)" },
+				{ "id": "pharisee", "name": "Fariseu" },
+				{ "id": "sadducee", "name": "Saduceu" },
+				{ "id": "soldier", "name": "Soldado" },
+				{ "id": "tax-collector", "name": "Publicano" },
+				{ "id": "man-of-judea", "name": "Homem da Judeia" },
+				{ "id": "resident-of-jerusalem", "name": "Habitante de Jerusalém" },
+				{ "id": "repentant-sinner", "name": "Pecador Confesso" },
+				{
+					"id": "holy-spirit-dove",
+					"name": "O Espírito Santo (Forma de pomba)"
+				},
+				{ "id": "jordan-river", "name": "Rio Jordão" }
+			]
+		},
+		{
+			"id": "jesus-calms-the-storm",
+			"title": "Jesus Acalma a Tempestade",
+			"description": "Enquanto atravessam o Mar da Galileia, uma violenta tempestade ameaça o barco dos discípulos, mas Jesus repreende o vento e o mar, trazendo grande bonança.",
+			"characters": [
+				{ "id": "jesus-christ", "name": "Jesus Cristo" },
+				{ "id": "simon-peter", "name": "Simão Pedro" },
+				{ "id": "james-zebedee", "name": "Tiago, filho de Zebedeu" },
+				{ "id": "john-apostle", "name": "João" },
+				{ "id": "andrew", "name": "André" },
+				{ "id": "philip", "name": "Filipe" },
+				{ "id": "bartholomew", "name": "Bartolomeu" },
+				{ "id": "matthew", "name": "Mateus" },
+				{ "id": "thomas", "name": "Tomé" },
+				{ "id": "james-alphaeus", "name": "Tiago, filho de Alfeu" },
+				{ "id": "thaddaeus", "name": "Tadeu" },
+				{ "id": "simon-zealot", "name": "Simão, o Zelote" }
+			]
+		},
+		{
+			"id": "crucifixion-of-jesus",
+			"title": "A Crucificação de Jesus",
+			"description": "No Monte Calvário, Jesus é crucificado entre dois malfeitores, entregando sua vida para a salvação da humanidade enquanto é testemunhado por seus seguidores e soldados.",
+			"characters": [
+				{ "id": "jesus-christ", "name": "Jesus Cristo" },
+				{ "id": "virgin-mary", "name": "Maria (Mãe de Jesus)" },
+				{ "id": "john-apostle", "name": "João (O Discípulo Amado)" },
+				{ "id": "mary-magdalene", "name": "Maria Madalena" },
+				{
+					"id": "penitent-thief",
+					"name": "Malfeitor Arrependido (O bom ladrão)"
+				},
+				{ "id": "impenitent-thief", "name": "Malfeitor Impenitente" },
+				{
+					"id": "roman-centurion",
+					"name": "Centurião Romano (Que reconheceu o Filho de Deus)"
+				},
+				{
+					"id": "simon-cyrene",
+					"name": "Simão de Cirene (Que carregou a cruz)"
+				},
+				{
+					"id": "soldier-lots",
+					"name": "Soldado Romano (Que sorteou as vestes)"
+				},
+				{ "id": "mary-clopas", "name": "Maria, mulher de Cleofas" },
+				{
+					"id": "joseph-arimathea",
+					"name": "José de Arimateia (Que pediu o corpo)"
+				},
+				{ "id": "nicodemus", "name": "Nicodemos (Que trouxe as especiarias)" }
+			]
+		},
+		{
+			"id": "resurrection-of-jesus",
+			"title": "A Ressurreição de Jesus",
+			"description": "Ao terceiro dia, Jesus vence a morte e ressuscita, sendo visto primeiro pelas mulheres no túmulo vazio e depois pelos seus discípulos.",
+			"characters": [
+				{ "id": "jesus-christ", "name": "Jesus Cristo" },
+				{ "id": "mary-magdalene", "name": "Maria Madalena" },
+				{ "id": "mary-mother-james", "name": "Maria, mãe de Tiago" },
+				{ "id": "salome", "name": "Salomé" },
+				{ "id": "joanna", "name": "Joana" },
+				{
+					"id": "angel-of-the-lord",
+					"name": "Anjo do Senhor"
+				},
+				{ "id": "second-angel", "name": "Segundo Anjo" },
+				{ "id": "simon-peter", "name": "Pedro" },
+				{ "id": "john-apostle", "name": "João" },
+				{ "id": "roman-guard", "name": "Guarda Romano" },
+				{ "id": "cleopas", "name": "Cleofas" },
+				{ "id": "cleopas-companion", "name": "Companheiro de Cleofas" }
+			]
+		},
+		{
+			"id": "paul-and-silas-in-prison",
+			"title": "Paulo e Silas na Prisão",
+			"description": "Após serem açoitados e presos em Filipos, Paulo e Silas cantam hinos na prisão, resultando em um terremoto milagroso e na conversão do carcereiro.",
+			"characters": [
+				{ "id": "apostle-paul", "name": "Paulo" },
+				{ "id": "silas", "name": "Silas" },
+				{ "id": "philippian-jailer", "name": "Carcereiro de Filipos" },
+				{ "id": "jailers-family-member", "name": "Familiar do Carcereiro" },
+				{ "id": "listening-prisoner", "name": "Preso Ouvinte" },
+				{ "id": "magistrate-1", "name": "Magistrado 1" },
+				{ "id": "magistrate-2", "name": "Magistrado 2" },
+				{ "id": "lictor-officer", "name": "Oficial" },
+				{ "id": "slave-girl-owner", "name": "Senhor da Escrava" },
+				{ "id": "soothsaying-girl", "name": "Jovem Escrava" },
+				{ "id": "crowd-member", "name": "Membro da Multidão" },
+				{ "id": "witness-prisoner", "name": "Segundo Preso" }
+			]
+		},
+		{
+			"id": "the-good-samaritan",
+			"title": "O Bom Samaritano",
+			"description": "Jesus conta a história de um homem socorrido por um estrangeiro desprezado, após ter sido ignorado por líderes religiosos e deixado para morrer.",
+			"characters": [
+				{ "id": "jesus-christ", "name": "Jesus Cristo" },
+				{ "id": "law-expert", "name": "Intérprete da Lei" },
+				{ "id": "the-traveler", "name": "O Viajante" },
+				{ "id": "robber-1", "name": "Salteador 1" },
+				{ "id": "robber-2", "name": "Salteador 2" },
+				{ "id": "the-priest", "name": "O Sacerdote" },
+				{ "id": "the-levite", "name": "O Levita" },
+				{ "id": "good-samaritan", "name": "O Bom Samaritano" },
+				{ "id": "the-innkeeper", "name": "O Hospedeiro" },
+				{ "id": "the-donkey", "name": "Animal de Carga" },
+				{ "id": "oil-and-wine", "name": "Azeite e Vinho" },
+				{ "id": "two-denarii", "name": "Dois Denários" }
+			]
+		}
+	]
+}

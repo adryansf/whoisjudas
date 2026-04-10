@@ -1,36 +1,31 @@
 {
-  "name": "whoisjudas",
-  "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "type": "module",
-  "scripts": {
-    "dev": "pnpm -r dev",
-    "build": "pnpm -r build",
-    "check-types": "pnpm -r check-types",
-    "dev:web": "pnpm --filter web dev",
-    "db:push": "pnpm --filter @whoisjudas/db db:push",
-    "db:studio": "pnpm --filter @whoisjudas/db db:studio",
-    "db:generate": "pnpm --filter @whoisjudas/db db:generate",
-    "db:migrate": "pnpm --filter @whoisjudas/db db:migrate",
-    "db:start": "pnpm --filter @whoisjudas/db db:start",
-    "db:watch": "pnpm --filter @whoisjudas/db db:watch",
-    "db:stop": "pnpm --filter @whoisjudas/db db:stop",
-    "db:down": "pnpm --filter @whoisjudas/db db:down",
-    "check": "biome check --write ."
-  },
-  "dependencies": {
-    "@whoisjudas/env": "workspace:*",
-    "dotenv": "catalog:",
-    "zod": "catalog:"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^2.2.0",
-    "@types/node": "^22.13.14",
-    "@whoisjudas/config": "workspace:*",
-    "typescript": "^5"
-  },
-  "packageManager": "pnpm@10.17.1"
+	"name": "whoisjudas",
+	"private": true,
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
+	"type": "module",
+	"scripts": {
+		"dev": "turbo dev",
+		"dev:next": "turbo dev",
+		"build": "turbo build",
+		"start": "NODE_ENV=production node server.js",
+		"check-types": "turbo check-types",
+		"dev:web": "turbo dev",
+		"check": "biome check --write ."
+	},
+	"dependencies": {
+		"@whoisjudas/env": "workspace:*",
+		"dotenv": "catalog:",
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.2.0",
+		"@types/node": "^22.13.14",
+		"@whoisjudas/config": "workspace:*",
+		"turbo": "^2.9.6",
+		"typescript": "^5"
+	},
+	"packageManager": "pnpm@10.17.1"
 }

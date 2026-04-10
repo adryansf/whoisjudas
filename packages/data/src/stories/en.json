@@ -1,0 +1,738 @@
+{
+	"stories": [
+		{
+			"id": "noahs-ark",
+			"title": "Noah's Ark",
+			"description": "The great flood is coming. Animals are boarding the ark two by two. God has instructed Noah to build an ark to save his family and the animals.",
+			"characters": [
+				{ "id": "noah", "name": "Noah" },
+				{ "id": "naamah", "name": "Naamah (Noah's Wife)" },
+				{ "id": "shem", "name": "Shem (Noah's Son)" },
+				{ "id": "ham", "name": "Ham (Noah's Son)" },
+				{ "id": "japheth", "name": "Japheth (Noah's Son)" },
+				{ "id": "shem-wife", "name": "Shem's Wife" },
+				{ "id": "ham-wife", "name": "Ham's Wife" },
+				{ "id": "japheth-wife", "name": "Japheth's Wife" },
+				{ "id": "dove", "name": "A Dove" },
+				{ "id": "raven", "name": "A Raven" },
+				{ "id": "elephant", "name": "An Elephant" },
+				{ "id": "lion", "name": "A Lion" }
+			]
+		},
+		{
+			"id": "david-goliath",
+			"title": "David and Goliath",
+			"description": "The Israelites face the Philistines in the Valley of Elah. A young shepherd boy steps forward to challenge the giant warrior Goliath.",
+			"characters": [
+				{ "id": "david", "name": "David" },
+				{ "id": "goliath", "name": "Goliath" },
+				{ "id": "saul", "name": "King Saul" },
+				{ "id": "jonathan", "name": "Jonathan, the Crown Prince" },
+				{ "id": "eliab", "name": "Eliab (David's Brother)" },
+				{ "id": "abinadab", "name": "Abinadab (David's Brother)" },
+				{ "id": "shammah", "name": "Shammah (David's Brother)" },
+				{ "id": "jesse", "name": "Jesse (David's Father)" },
+				{ "id": "israelite-soldier-1", "name": "An Israelite Soldier" },
+				{ "id": "israelite-soldier-2", "name": "An Israelite Soldier" },
+				{ "id": "philistine-warrior-1", "name": "A Philistine Warrior" },
+				{ "id": "philistine-warrior-2", "name": "A Philistine Warrior" }
+			]
+		},
+		{
+			"id": "last-supper",
+			"title": "The Last Supper",
+			"description": "Jesus gathers with his twelve disciples for the Passover meal. He knows one will betray him. The atmosphere is tense with anticipation.",
+			"characters": [
+				{ "id": "jesus", "name": "Jesus" },
+				{ "id": "peter", "name": "Peter" },
+				{ "id": "john", "name": "John" },
+				{ "id": "james", "name": "James" },
+				{ "id": "andrew", "name": "Andrew" },
+				{ "id": "philip", "name": "Philip" },
+				{ "id": "thomas", "name": "Thomas" },
+				{ "id": "matthew", "name": "Matthew" },
+				{ "id": "james-son-alpheus", "name": "James (Son of Alphaeus)" },
+				{ "id": "thaddaeus", "name": "Thaddaeus" },
+				{ "id": "simon-the-zealot", "name": "Simon the Zealot" },
+				{ "id": "bartholomew", "name": "Bartholomew" }
+			]
+		},
+		{
+			"id": "ten-commandments",
+			"title": "The Ten Commandments",
+			"description": "God delivers the tablets of the law to Moses on Mount Sinai to guide his people.",
+			"characters": [
+				{ "id": "moses", "name": "Moses, the Deliverer" },
+				{ "id": "god", "name": "Voice of God (The I Am)" },
+				{ "id": "aaron", "name": "Aaron, the High Priest" },
+				{ "id": "miriam", "name": "Miriam, the Prophetess" },
+				{ "id": "joshua", "name": "Joshua, the Commander" },
+				{ "id": "jethro", "name": "Jethro, Priest of Midian" },
+				{ "id": "hur", "name": "Hur, Noble of Judah" },
+				{ "id": "zipporah", "name": "Zipporah, Wife of Moses" },
+				{ "id": "golden-calf", "name": "The Golden Calf" },
+				{ "id": "sacrificial-lamb", "name": "Sacrificial Lamb" },
+				{ "id": "quail", "name": "Desert Quail" },
+				{ "id": "donkey", "name": "Pack Donkey" }
+			]
+		},
+		{
+			"id": "multiplication-loaves",
+			"title": "The Multiplication of the Loaves",
+			"description": "Jesus feeds a crowd of five thousand people with only five loaves and two fish.",
+			"characters": [
+				{ "id": "jesus", "name": "Jesus Christ" },
+				{ "id": "philip", "name": "Philip (Apostle)" },
+				{ "id": "andrew", "name": "Andrew (Apostle)" },
+				{ "id": "young-boy", "name": "The Boy with Loaves and Fish" },
+				{ "id": "peter", "name": "Simon Peter (Apostle)" },
+				{ "id": "john", "name": "John (Apostle)" },
+				{ "id": "james", "name": "James (Apostle)" },
+				{ "id": "crowd-man-1", "name": "Man from the Crowd" },
+				{ "id": "crowd-man-2", "name": "Man from the Crowd" },
+				{ "id": "crowd-woman-1", "name": "Woman from the Crowd" },
+				{ "id": "crowd-woman-2", "name": "Woman from the Crowd" },
+				{ "id": "crowd-child", "name": "Child from the Crowd" }
+			]
+		},
+		{
+			"id": "ten-plagues",
+			"title": "The Ten Plagues of Egypt",
+			"description": "God sends plagues upon Egypt to convince Pharaoh to release the people of Israel from slavery.",
+			"characters": [
+				{ "id": "moses", "name": "Moses" },
+				{ "id": "aaron", "name": "Aaron" },
+				{ "id": "pharaoh", "name": "Pharaoh (Ramses)" },
+				{ "id": "magician-1", "name": "Egyptian Magician 1" },
+				{ "id": "magician-2", "name": "Egyptian Magician 2" },
+				{ "id": "pharaoh-son", "name": "Pharaoh's Firstborn Son" },
+				{ "id": "egyptian-mother", "name": "Egyptian Mother" },
+				{ "id": "israelite-slave", "name": "Israelite Slave" },
+				{ "id": "frog", "name": "Frog (Second Plague)" },
+				{ "id": "lice", "name": "Louse (Third Plague)" },
+				{ "id": "locust", "name": "Locust (Eighth Plague)" },
+				{ "id": "livestock", "name": "Egyptian Livestock" }
+			]
+		},
+		{
+			"id": "golden-calf",
+			"title": "The Golden Calf",
+			"description": "While Moses receives the commandments on the mountain, the people lose patience and build an idol to worship.",
+			"characters": [
+				{ "id": "moses", "name": "Moses" },
+				{ "id": "aaron", "name": "Aaron" },
+				{ "id": "joshua", "name": "Joshua" },
+				{ "id": "hur", "name": "Hur (Israelite Leader)" },
+				{ "id": "israelite-man", "name": "Man from the Crowd" },
+				{ "id": "israelite-woman", "name": "Woman from the Crowd" },
+				{ "id": "israelite-rebel", "name": "Rebellious Israelite" },
+				{ "id": "levite-warrior", "name": "Levite Warrior" },
+				{ "id": "golden-calf-idol", "name": "The Golden Calf (Idol)" },
+				{ "id": "sacrificial-ox", "name": "Sacrificial Ox" },
+				{ "id": "sheep", "name": "Sheep from the Flock" },
+				{ "id": "donkey", "name": "Donkey" }
+			]
+		},
+		{
+			"id": "jesus-walks-on-water",
+			"title": "Jesus Walks on Water",
+			"description": "After feeding the crowd, Jesus walks upon the stormy sea to meet the disciples in their boat.",
+			"characters": [
+				{ "id": "jesus", "name": "Jesus Christ" },
+				{ "id": "peter", "name": "Simon Peter" },
+				{ "id": "john", "name": "John (Apostle)" },
+				{ "id": "james", "name": "James (Apostle)" },
+				{ "id": "andrew", "name": "Andrew (Apostle)" },
+				{ "id": "philip", "name": "Philip (Apostle)" },
+				{ "id": "matthew", "name": "Matthew (Apostle)" },
+				{ "id": "thomas", "name": "Thomas (Apostle)" },
+				{ "id": "bartholomew", "name": "Bartholomew (Apostle)" },
+				{ "id": "thaddeus", "name": "Thaddeus (Apostle)" },
+				{ "id": "simon-zealot", "name": "Simon the Zealot" },
+				{ "id": "fish-galilee", "name": "Fish of Galilee" }
+			]
+		},
+		{
+			"id": "resurrection-lazarus",
+			"title": "The Resurrection of Lazarus",
+			"description": "Jesus demonstrates his power over death by calling his friend Lazarus out of the tomb after four days.",
+			"characters": [
+				{ "id": "jesus", "name": "Jesus Christ" },
+				{ "id": "lazarus", "name": "Lazarus of Bethany" },
+				{ "id": "martha", "name": "Martha" },
+				{ "id": "mary", "name": "Mary" },
+				{ "id": "thomas", "name": "Thomas (Apostle)" },
+				{ "id": "peter", "name": "Simon Peter" },
+				{ "id": "john", "name": "John (Apostle)" },
+				{ "id": "james", "name": "James (Apostle)" },
+				{ "id": "jewish-mourner-1", "name": "Jewish Comforter" },
+				{ "id": "jewish-mourner-2", "name": "Eyewitness" },
+				{ "id": "stone-mover", "name": "Man who moved the stone" },
+				{ "id": "helper", "name": "Helper who unbound the grave clothes" }
+			]
+		},
+		{
+			"id": "garden-of-eden",
+			"title": "The Creation and the Fall in Eden",
+			"description": "Adam and Eve live in harmony in paradise until they are tempted by the serpent to disobey God.",
+			"characters": [
+				{ "id": "adam", "name": "Adam" },
+				{ "id": "eve", "name": "Eve" },
+				{ "id": "god-voice", "name": "God (Voice in the Garden)" },
+				{ "id": "cherub-guard", "name": "Cherub (Guardian of Eden)" },
+				{ "id": "serpent", "name": "The Serpent (The Tempter)" },
+				{ "id": "lion", "name": "Lion" },
+				{ "id": "lamb", "name": "Lamb" },
+				{ "id": "eagle", "name": "Eagle" },
+				{ "id": "elephant", "name": "Elephant" },
+				{ "id": "horse", "name": "Horse" },
+				{ "id": "ox", "name": "Ox" },
+				{ "id": "dove", "name": "Dove" }
+			]
+		},
+		{
+			"id": "manna-in-the-desert",
+			"title": "Manna in the Desert",
+			"description": "The Israelites cry out for food in the desert, and God sends manna from heaven and quail to sustain them.",
+			"characters": [
+				{ "id": "moses", "name": "Moses" },
+				{ "id": "aaron", "name": "Aaron" },
+				{ "id": "god-voice", "name": "Voice of God" },
+				{ "id": "joshua", "name": "Joshua" },
+				{ "id": "israelite-elder", "name": "Elder of Israel" },
+				{ "id": "prince-congregation", "name": "Prince of the Congregation" },
+				{ "id": "murmuring-israelite", "name": "Murmuring Israelite" },
+				{ "id": "manna-collector", "name": "Manna Collector" },
+				{ "id": "israelite-mother", "name": "Israelite Woman" },
+				{ "id": "israelite-child", "name": "Israelite Child" },
+				{ "id": "camp-sentry", "name": "Camp Sentry" },
+				{ "id": "desert-quail", "name": "Desert Quail" }
+			]
+		},
+		{
+			"id": "water-from-the-rock",
+			"title": "Water from the Rock",
+			"description": "The people of Israel cry out in thirst in the desert, and God commands Moses to strike the rock so that water flows from it.",
+			"characters": [
+				{ "id": "moses", "name": "Moses" },
+				{ "id": "aaron", "name": "Aaron" },
+				{ "id": "god-voice", "name": "Voice of God" },
+				{ "id": "joshua", "name": "Joshua" },
+				{ "id": "israelite-elder-1", "name": "Elder of Israel (Witness)" },
+				{ "id": "israelite-elder-2", "name": "Another Elder of the People" },
+				{ "id": "murmuring-man", "name": "Thirsty Israelite (Murmurer)" },
+				{ "id": "israelite-mother", "name": "Israelite Mother" },
+				{ "id": "israelite-child", "name": "Israelite Child" },
+				{ "id": "israelite-shepherd", "name": "Shepherd of the Flock" },
+				{ "id": "camp-sentry", "name": "Camp Sentry" },
+				{ "id": "thirsty-sheep", "name": "Thirsty Sheep" }
+			]
+		},
+		{
+			"id": "pentecost",
+			"title": "Pentecost",
+			"description": "The Holy Spirit descends upon the disciples in tongues of fire, enabling them to speak in various languages before a crowd.",
+			"characters": [
+				{ "id": "peter", "name": "Simon Peter (Apostle)" },
+				{ "id": "mary-mother", "name": "Mary (Mother of Jesus)" },
+				{ "id": "john", "name": "John (Apostle)" },
+				{ "id": "matthias", "name": "Matthias (The New Apostle)" },
+				{ "id": "andrew", "name": "Andrew (Apostle)" },
+				{ "id": "james", "name": "James (Apostle)" },
+				{ "id": "devout-jew", "name": "Devout Jew (Crowd)" },
+				{ "id": "parthian-visitor", "name": "Visitor from Parthia" },
+				{ "id": "egyptian-visitor", "name": "Visitor from Egypt" },
+				{ "id": "roman-visitor", "name": "Visitor from Rome" },
+				{ "id": "mocking-man", "name": "Mocking Man (Skeptic)" },
+				{
+					"id": "new-convert",
+					"name": "New Convert (One of the three thousand)"
+				}
+			]
+		},
+		{
+			"id": "healing-of-the-paralytic",
+			"title": "The Healing of the Paralytic",
+			"description": "Four friends cut a hole in the roof of a house to lower a paralytic man to Jesus, who forgives and heals him before the crowd.",
+			"characters": [
+				{ "id": "jesus", "name": "Jesus Christ" },
+				{ "id": "paralytic-man", "name": "The Paralytic Man" },
+				{ "id": "friend-1", "name": "Friend (Stretcher Bearer 1)" },
+				{ "id": "friend-2", "name": "Friend (Stretcher Bearer 2)" },
+				{ "id": "friend-3", "name": "Friend (Stretcher Bearer 3)" },
+				{ "id": "friend-4", "name": "Friend (Stretcher Bearer 4)" },
+				{ "id": "simon-peter", "name": "Simon Peter (Homeowner)" },
+				{ "id": "scribe-critic", "name": "Scribe (Questioner)" },
+				{ "id": "pharisee-observer", "name": "Pharisee (Watcher of the Law)" },
+				{ "id": "crowd-blocker", "name": "Man at the Door (Blocking entry)" },
+				{ "id": "crowd-witness", "name": "Woman in the Crowd (Witness)" },
+				{ "id": "apostle-john", "name": "John (Apostle)" }
+			]
+		},
+		{
+			"id": "samaritan-woman",
+			"title": "The Samaritan Woman",
+			"description": "Beside Jacob's well, Jesus reveals his messianic identity to a Samaritan woman, transforming her life and her city.",
+			"characters": [
+				{ "id": "jesus", "name": "Jesus Christ" },
+				{ "id": "samaritan-woman", "name": "The Samaritan Woman" },
+				{ "id": "peter", "name": "Simon Peter (Apostle)" },
+				{ "id": "john", "name": "John (Apostle)" },
+				{
+					"id": "james-son-zebedee",
+					"name": "James, son of Zebedee (Apostle)"
+				},
+				{ "id": "andrew", "name": "Andrew (Apostle)" },
+				{ "id": "philip", "name": "Philip (Apostle)" },
+				{ "id": "bartholomew", "name": "Bartholomew (Apostle)" },
+				{ "id": "matthew", "name": "Matthew (Apostle)" },
+				{ "id": "thomas", "name": "Thomas (Apostle)" },
+				{
+					"id": "james-son-alphaeus",
+					"name": "James, son of Alphaeus (Apostle)"
+				},
+				{ "id": "thaddeus", "name": "Thaddeus (Apostle)" }
+			]
+		},
+		{
+			"id": "miraculous-catch",
+			"title": "The Miraculous Catch of Fish",
+			"description": "After a night of failed fishing, Jesus commands Peter to cast the nets into deep water, resulting in a supernatural catch.",
+			"characters": [
+				{ "id": "jesus", "name": "Jesus Christ" },
+				{ "id": "simon-peter", "name": "Simon Peter" },
+				{ "id": "james-son-zebedee", "name": "James (Peter's Partner)" },
+				{ "id": "john-son-zebedee", "name": "John (Peter's Partner)" },
+				{ "id": "andrew", "name": "Andrew (Peter's Brother)" },
+				{
+					"id": "partner-fisherman-1",
+					"name": "Partner Fisherman (from the other boat)"
+				},
+				{ "id": "partner-fisherman-2", "name": "Fishing Helper" },
+				{ "id": "crowd-man", "name": "Man from the Crowd (on the shore)" },
+				{ "id": "crowd-woman", "name": "Woman from the Crowd (on the shore)" },
+				{ "id": "crowd-child", "name": "Child from the Crowd" },
+				{ "id": "listener-shore", "name": "Listener by the Lakeside" },
+				{ "id": "great-shoal-fish", "name": "Great Shoal of Fish" }
+			]
+		},
+		{
+			"id": "balaam-and-the-donkey",
+			"title": "Balaam and the Donkey",
+			"description": "The prophet Balaam is confronted by an angel on the way to Moab, while his donkey speaks to warn him of the hidden danger.",
+			"characters": [
+				{ "id": "balaam", "name": "Balaam (The Prophet)" },
+				{ "id": "angel-of-the-lord", "name": "Angel of the Lord" },
+				{ "id": "servant-1", "name": "Balaam's Servant 1" },
+				{ "id": "servant-2", "name": "Balaam's Servant 2" },
+				{ "id": "moabite-prince-1", "name": "Prince of Moab" },
+				{ "id": "moabite-prince-2", "name": "Prince of Moab" },
+				{ "id": "moabite-prince-3", "name": "Prince of Moab" },
+				{ "id": "moabite-noble-1", "name": "Moabite Noble" },
+				{ "id": "moabite-noble-2", "name": "Moabite Noble" },
+				{ "id": "balaks-messenger", "name": "Messenger of Balak" },
+				{ "id": "moabite-official", "name": "Moabite Official" },
+				{ "id": "the-donkey", "name": "Balaam's Donkey" }
+			]
+		},
+		{
+			"id": "transfiguration",
+			"title": "The Transfiguration",
+			"description": "On a mountaintop, Jesus reveals his divine glory, conversing with Moses and Elijah before Peter, James, and John.",
+			"characters": [
+				{ "id": "jesus", "name": "Jesus Christ (Transfigured)" },
+				{ "id": "moses", "name": "Moses (The Prophet)" },
+				{ "id": "elijah", "name": "Elijah (The Prophet)" },
+				{ "id": "peter", "name": "Simon Peter (Apostle)" },
+				{ "id": "james", "name": "James, son of Zebedee (Apostle)" },
+				{ "id": "john", "name": "John (Apostle)" },
+				{ "id": "voice-of-god", "name": "The Voice of God (The Father)" },
+				{ "id": "luminous-cloud", "name": "Luminous Cloud (The Phenomenon)" },
+				{
+					"id": "resplendent-garments",
+					"name": "Resplendent Garments (of Jesus)"
+				},
+				{ "id": "mountain-peak", "name": "Mountain Peak (The Setting)" },
+				{ "id": "three-tents", "name": "The Three Tents (proposed by Peter)" },
+				{ "id": "dazzling-light", "name": "Dazzling Light (The Splendor)" }
+			]
+		},
+		{
+			"id": "conversion-of-paul",
+			"title": "The Conversion of Saul",
+			"description": "The persecutor Saul is transformed after an encounter with Jesus on the road to Damascus, being healed by Ananias and escaping his opponents.",
+			"characters": [
+				{ "id": "saul-of-tarsus", "name": "Saul of Tarsus" },
+				{ "id": "jesus-christ", "name": "Jesus Christ (The Voice)" },
+				{
+					"id": "high-priest",
+					"name": "High Priest (Authority for the letters)"
+				},
+				{ "id": "ananias", "name": "Ananias of Damascus" },
+				{
+					"id": "judas-straight-street",
+					"name": "Judas (Owner of the house on Straight Street)"
+				},
+				{ "id": "travel-companion-1", "name": "Travel Companion 1 (Listener)" },
+				{
+					"id": "travel-companion-2",
+					"name": "Travel Companion 2 (Speechless)"
+				},
+				{ "id": "hand-guide", "name": "The Guide (Who led him by the hand)" },
+				{
+					"id": "damascus-disciple",
+					"name": "Damascus Disciple (Who welcomed him)"
+				},
+				{
+					"id": "puzzled-jew",
+					"name": "Synagogue Jew (Baffled by his preaching)"
+				},
+				{
+					"id": "conspirator",
+					"name": "Damascus Conspirator (Who plotted against him)"
+				},
+				{
+					"id": "sauls-follower",
+					"name": "Saul's Follower (Who lowered him in the basket)"
+				}
+			]
+		},
+		{
+			"id": "joseph-sold-by-brothers",
+			"title": "Joseph Sold into Slavery",
+			"description": "Envied by his brothers for being his father's favorite, Joseph is thrown into a pit and then sold to merchants traveling to Egypt.",
+			"characters": [
+				{ "id": "joseph", "name": "Joseph" },
+				{ "id": "reuben", "name": "Reuben (The eldest brother)" },
+				{ "id": "judah", "name": "Judah (Who proposed the sale)" },
+				{ "id": "simeon", "name": "Simeon (Brother)" },
+				{ "id": "levi", "name": "Levi (Brother)" },
+				{ "id": "issachar", "name": "Issachar (Brother)" },
+				{ "id": "zebulun", "name": "Zebulun (Brother)" },
+				{ "id": "dan", "name": "Dan (Brother)" },
+				{ "id": "naphtali", "name": "Naphtali (Brother)" },
+				{ "id": "gad", "name": "Gad (Brother)" },
+				{ "id": "asher", "name": "Asher (Brother)" },
+				{
+					"id": "ishmaelite-merchant",
+					"name": "Ishmaelite Merchant (The buyer)"
+				}
+			]
+		},
+		{
+			"id": "joseph-interprets-dreams",
+			"title": "Joseph Interprets Pharaoh's Dreams",
+			"description": "Brought from prison, Joseph interprets Pharaoh's troubling dreams about cows and ears of grain, being appointed ruler of Egypt.",
+			"characters": [
+				{ "id": "joseph", "name": "Joseph" },
+				{ "id": "pharaoh", "name": "Pharaoh (King of Egypt)" },
+				{
+					"id": "chief-cupbearer",
+					"name": "Chief Cupbearer (Who recommended Joseph)"
+				},
+				{
+					"id": "potipherah",
+					"name": "Potipherah (Priest of On and father of Asenath)"
+				},
+				{ "id": "asenath", "name": "Asenath (Given to Joseph as his wife)" },
+				{ "id": "prison-guard", "name": "Prison guard (Who released Joseph)" },
+				{
+					"id": "magician-egypt",
+					"name": "Egyptian Magician (Unable to interpret)"
+				},
+				{ "id": "wise-man-egypt", "name": "Egyptian Wise Man" },
+				{
+					"id": "pharaohs-servant",
+					"name": "Pharaoh's Servant (Present in court)"
+				},
+				{
+					"id": "seven-fat-cows",
+					"name": "Seven Fat Cows (From Pharaoh's dream)"
+				},
+				{
+					"id": "seven-lean-cows",
+					"name": "Seven Lean Cows (From Pharaoh's dream)"
+				},
+				{ "id": "ear-of-corn", "name": "Ear of corn (From Pharaoh's dream)" }
+			]
+		},
+		{
+			"id": "jonah-and-the-great-fish",
+			"title": "Jonah and the Great Fish",
+			"description": "Attempting to flee his divine mission, Jonah faces a storm at sea, is thrown overboard by the sailors, and swallowed by a great fish.",
+			"characters": [
+				{ "id": "jonah", "name": "Jonah (The Prophet)" },
+				{ "id": "shipmaster", "name": "Shipmaster (The Captain)" },
+				{ "id": "mariner-crying", "name": "Sailor crying to his god" },
+				{ "id": "mariner-jettisoning", "name": "Sailor jettisoning the cargo" },
+				{ "id": "mariner-casting-lots", "name": "Sailor casting lots" },
+				{ "id": "mariner-questioning", "name": "Sailor questioning Jonah" },
+				{ "id": "mariner-rowing", "name": "Sailor rowing hard" },
+				{ "id": "mariner-praying", "name": "Sailor praying to the Lord" },
+				{ "id": "mariner-throwing", "name": "Sailor throwing Jonah overboard" },
+				{
+					"id": "mariner-fearing",
+					"name": "Sailor offering sacrifices and vows"
+				},
+				{ "id": "the-great-fish", "name": "The Great Fish" },
+				{ "id": "the-tempest", "name": "The Tempest" }
+			]
+		},
+		{
+			"id": "crossing-the-red-sea",
+			"title": "The Crossing of the Red Sea",
+			"description": "Under Moses' command, the people of Israel cross the sea on dry land, celebrating their deliverance while Pharaoh's army is overtaken by the waters.",
+			"characters": [
+				{ "id": "moses", "name": "Moses (Leader of Israel)" },
+				{ "id": "pharaoh", "name": "Pharaoh (King of Egypt)" },
+				{ "id": "miriam", "name": "Miriam (The Prophetess)" },
+				{ "id": "aaron", "name": "Aaron (Moses' Brother)" },
+				{ "id": "angel-of-god", "name": "Angel of God (The Protector)" },
+				{ "id": "pharaohs-captain", "name": "Pharaoh's Chariot Captain" },
+				{ "id": "israelite-man", "name": "Israelite Man" },
+				{
+					"id": "israelite-woman",
+					"name": "Israelite Woman (Follower of Miriam)"
+				},
+				{ "id": "israelite-child", "name": "Israelite Child (New Generation)" },
+				{ "id": "egyptian-soldier", "name": "Egyptian Soldier (Pursuer)" },
+				{ "id": "pharaohs-horse", "name": "Pharaoh's Horse (The Animal)" },
+				{ "id": "moses-staff", "name": "Moses' Staff (The Item)" }
+			]
+		},
+		{
+			"id": "daniel-in-the-lions-den",
+			"title": "Daniel in the Lions' Den",
+			"description": "The victim of a political conspiracy, the prophet Daniel is thrown into a den of hungry lions but is miraculously preserved by God.",
+			"characters": [
+				{ "id": "daniel", "name": "Daniel (The Administrator)" },
+				{ "id": "king-darius", "name": "King Darius (The Mede)" },
+				{
+					"id": "conspiring-president",
+					"name": "Conspiring President (Daniel's Colleague)"
+				},
+				{ "id": "rival-president", "name": "Other Rival President" },
+				{
+					"id": "accusing-satrap",
+					"name": "Accusing Satrap (Representing the 120)"
+				},
+				{
+					"id": "conspirators-wife",
+					"name": "Conspirator's Wife (Daniel 6:24)"
+				},
+				{
+					"id": "conspirators-child",
+					"name": "Conspirator's Child (Daniel 6:24)"
+				},
+				{
+					"id": "palace-musician",
+					"name": "King's Musician (Whose music was refused)"
+				},
+				{ "id": "den-guard", "name": "Guard of the Den (Who brought Daniel)" },
+				{
+					"id": "angel-of-god",
+					"name": "Angel of God (Who shut the lions' mouths)"
+				},
+				{ "id": "hungry-lion", "name": "Hungry Lion (The Animal)" },
+				{ "id": "sealed-stone", "name": "The Sealed Stone (The Element)" }
+			]
+		},
+		{
+			"id": "shadrach-meshach-abednego-furnace",
+			"title": "The Fiery Furnace",
+			"description": "Three young Hebrews refuse to worship King Nebuchadnezzar's golden statue and are thrown into a furnace, where they are protected by a heavenly being.",
+			"characters": [
+				{ "id": "shadrach", "name": "Shadrach" },
+				{ "id": "meshach", "name": "Meshach" },
+				{ "id": "abednego", "name": "Abednego" },
+				{ "id": "king-nebuchadnezzar", "name": "King Nebuchadnezzar" },
+				{
+					"id": "the-fourth-man",
+					"name": "The Fourth Man (The Angel/Son of God)"
+				},
+				{
+					"id": "chaldean-accuser",
+					"name": "Chaldean (The Malicious Accuser)"
+				},
+				{
+					"id": "the-herald",
+					"name": "The Herald (Who proclaimed the decree)"
+				},
+				{
+					"id": "mighty-soldier",
+					"name": "Mighty Soldier (Who bound them and died from the heat)"
+				},
+				{
+					"id": "satrap-official",
+					"name": "Satrap (Representing the governors)"
+				},
+				{
+					"id": "musician-orchestra",
+					"name": "Court Musician (Playing the harp and flute)"
+				},
+				{
+					"id": "royal-counselor",
+					"name": "Royal Counselor (Who witnessed the miracle)"
+				},
+				{
+					"id": "captain-of-guard",
+					"name": "Captain of the Guard (Executor of the order)"
+				}
+			]
+		},
+		{
+			"id": "nativity-of-jesus",
+			"title": "The Birth of Jesus",
+			"description": "The Savior is born in Bethlehem during a census, worshipped by shepherds and wise men while angels celebrate in the heavens.",
+			"characters": [
+				{ "id": "jesus-christ", "name": "Jesus Christ (Newborn)" },
+				{ "id": "virgin-mary", "name": "Mary (Mother of Jesus)" },
+				{ "id": "saint-joseph", "name": "Joseph (Earthly father)" },
+				{ "id": "angel-of-the-lord", "name": "Angel of the Lord (Messenger)" },
+				{ "id": "shepherd-1", "name": "First Shepherd (Witness in the field)" },
+				{ "id": "shepherd-2", "name": "Second Shepherd (Manger visitor)" },
+				{ "id": "wise-man-1", "name": "Wise Man from the East 1 (Visitor)" },
+				{ "id": "wise-man-2", "name": "Wise Man from the East 2" },
+				{ "id": "king-herod", "name": "King Herod (The Opponent)" },
+				{ "id": "chief-priest", "name": "Chief Priest (Consulted by Herod)" },
+				{
+					"id": "scribe-of-the-people",
+					"name": "Scribe of the People (Knower of prophecy)"
+				},
+				{
+					"id": "caesar-augustus",
+					"name": "Caesar Augustus (Emperor of the decree)"
+				}
+			]
+		},
+		{
+			"id": "baptism-of-jesus",
+			"title": "The Baptism of Jesus",
+			"description": "Jesus is baptized by John the Baptist in the Jordan River, at which moment the heavens open and the Holy Spirit descends upon Him, accompanied by the Father's voice.",
+			"characters": [
+				{ "id": "jesus-christ", "name": "Jesus Christ" },
+				{ "id": "john-the-baptist", "name": "John the Baptist" },
+				{ "id": "voice-of-god", "name": "The Voice of God (The Father)" },
+				{ "id": "pharisee", "name": "Pharisee" },
+				{ "id": "sadducee", "name": "Sadducee" },
+				{ "id": "soldier", "name": "Soldier" },
+				{ "id": "tax-collector", "name": "Tax Collector" },
+				{ "id": "man-of-judea", "name": "Man of Judea" },
+				{ "id": "resident-of-jerusalem", "name": "Resident of Jerusalem" },
+				{ "id": "confessing-sinner", "name": "Confessing Sinner" },
+				{
+					"id": "holy-spirit-dove",
+					"name": "The Holy Spirit (In the form of a dove)"
+				},
+				{ "id": "jordan-river", "name": "Jordan River (The Element/Setting)" }
+			]
+		},
+		{
+			"id": "jesus-calms-the-storm",
+			"title": "Jesus Calms the Storm",
+			"description": "While crossing the Sea of Galilee, a violent storm threatens the disciples' boat, but Jesus rebukes the wind and the sea, bringing a great calm.",
+			"characters": [
+				{ "id": "jesus-christ", "name": "Jesus Christ" },
+				{ "id": "simon-peter", "name": "Simon Peter" },
+				{ "id": "james-zebedee", "name": "James, son of Zebedee" },
+				{ "id": "john-apostle", "name": "John" },
+				{ "id": "andrew", "name": "Andrew" },
+				{ "id": "philip", "name": "Philip" },
+				{ "id": "bartholomew", "name": "Bartholomew" },
+				{ "id": "matthew", "name": "Matthew" },
+				{ "id": "thomas", "name": "Thomas" },
+				{ "id": "james-alphaeus", "name": "James, son of Alphaeus" },
+				{ "id": "thaddaeus", "name": "Thaddaeus" },
+				{ "id": "simon-zealot", "name": "Simon the Zealot (Apostle)" }
+			]
+		},
+		{
+			"id": "crucifixion-of-jesus",
+			"title": "The Crucifixion of Jesus",
+			"description": "On Mount Calvary, Jesus is crucified between two criminals, giving His life for the salvation of humanity while witnessed by His followers and soldiers.",
+			"characters": [
+				{ "id": "jesus-christ", "name": "Jesus Christ" },
+				{ "id": "virgin-mary", "name": "Mary (Mother of Jesus)" },
+				{ "id": "john-apostle", "name": "John (The Beloved Disciple)" },
+				{ "id": "mary-magdalene", "name": "Mary Magdalene" },
+				{ "id": "penitent-thief", "name": "The Penitent Thief" },
+				{ "id": "impenitent-thief", "name": "The Impenitent Thief" },
+				{
+					"id": "roman-centurion",
+					"name": "Roman Centurion (Who recognized the Son of God)"
+				},
+				{
+					"id": "simon-cyrene",
+					"name": "Simon of Cyrene (Who carried the cross)"
+				},
+				{
+					"id": "soldier-lots",
+					"name": "Roman Soldier (Casting lots for the garments)"
+				},
+				{ "id": "mary-clopas", "name": "Mary, wife of Clopas" },
+				{
+					"id": "joseph-arimathea",
+					"name": "Joseph of Arimathea (Who requested the body)"
+				},
+				{ "id": "nicodemus", "name": "Nicodemus (Who brought the spices)" }
+			]
+		},
+		{
+			"id": "resurrection-of-jesus",
+			"title": "The Resurrection of Jesus",
+			"description": "On the third day, Jesus overcomes death and rises again, being seen first by the women at the empty tomb and then by His disciples.",
+			"characters": [
+				{ "id": "jesus-christ", "name": "Jesus Christ" },
+				{ "id": "mary-magdalene", "name": "Mary Magdalene" },
+				{ "id": "mary-mother-james", "name": "Mary, mother of James" },
+				{ "id": "salome", "name": "Salome" },
+				{ "id": "joanna", "name": "Joanna" },
+				{ "id": "angel-of-the-lord", "name": "Angel of the Lord" },
+				{ "id": "second-angel", "name": "Second Angel" },
+				{ "id": "simon-peter", "name": "Peter" },
+				{ "id": "john-apostle", "name": "John" },
+				{ "id": "roman-guard", "name": "Roman Guard" },
+				{ "id": "cleopas", "name": "Cleopas" },
+				{ "id": "cleopas-companion", "name": "Companion of Cleopas" }
+			]
+		},
+		{
+			"id": "paul-and-silas-in-prison",
+			"title": "Paul and Silas in Prison",
+			"description": "After being beaten and imprisoned in Philippi, Paul and Silas sing hymns in prison, leading to a miraculous earthquake and the jailer's conversion.",
+			"characters": [
+				{ "id": "apostle-paul", "name": "Paul" },
+				{ "id": "silas", "name": "Silas" },
+				{ "id": "philippian-jailer", "name": "Philippian Jailer" },
+				{ "id": "jailers-family-member", "name": "Jailer's Household Member" },
+				{ "id": "listening-prisoner", "name": "Listening Prisoner" },
+				{ "id": "magistrate-1", "name": "Magistrate 1" },
+				{ "id": "magistrate-2", "name": "Magistrate 2" },
+				{ "id": "lictor-officer", "name": "Officer" },
+				{ "id": "slave-girl-owner", "name": "Slave Girl's Owner" },
+				{ "id": "soothsaying-girl", "name": "Slave Girl" },
+				{ "id": "crowd-member", "name": "Member of the Crowd" },
+				{ "id": "witness-prisoner", "name": "Second Prisoner" }
+			]
+		},
+		{
+			"id": "the-good-samaritan",
+			"title": "The Good Samaritan",
+			"description": "Jesus tells the story of a man rescued by a despised foreigner, after being ignored by religious leaders and left for dead.",
+			"characters": [
+				{ "id": "jesus-christ", "name": "Jesus Christ" },
+				{ "id": "law-expert", "name": "Expert in the Law" },
+				{ "id": "the-traveler", "name": "The Traveler" },
+				{ "id": "robber-1", "name": "Robber 1" },
+				{ "id": "robber-2", "name": "Robber 2" },
+				{ "id": "the-priest", "name": "The Priest" },
+				{ "id": "the-levite", "name": "The Levite" },
+				{ "id": "good-samaritan", "name": "The Good Samaritan" },
+				{ "id": "the-innkeeper", "name": "The Innkeeper" },
+				{ "id": "the-donkey", "name": "Beast of Burden" },
+				{ "id": "oil-and-wine", "name": "Oil and Wine" },
+				{ "id": "two-denarii", "name": "Two Denarii" }
+			]
+		}
+	]
+}
