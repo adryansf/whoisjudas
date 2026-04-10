@@ -1,99 +1,148 @@
-# whoisjudas
+# WhoIsJudas
 
-This project was created with [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack), a modern TypeScript stack that combines Next.js, Self, ORPC, and more.
+A real-time multiplayer social deduction game built with Next.js and Socket.IO. Players join rooms, receive roles, and must identify the traitor among them.
 
 ## Features
 
-- **TypeScript** - For type safety and improved developer experience
-- **Next.js** - Full-stack React framework
-- **TailwindCSS** - Utility-first CSS for rapid UI development
-- **Shared UI package** - shadcn/ui primitives live in `packages/ui`
-- **oRPC** - End-to-end type-safe APIs with OpenAPI integration
-- **Drizzle** - TypeScript-first ORM
-- **PostgreSQL** - Database engine
-- **Biome** - Linting and formatting
-- **PWA** - Progressive Web App support
+- **Real-time Multiplayer** - Socket.IO powered instant communication
+- **Role-based Gameplay** - Unique abilities for each player role
+- **Multi-tab Support** - Play from multiple browser tabs without conflicts
+- **Session Persistence** - Reconnect seamlessly after connection drops
+- **TypeScript** - Full type safety across client and server
+- **Shared UI Components** - shadcn/ui primitives in a centralized package
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Real-time**: Socket.IO 4.x
+- **Styling**: TailwindCSS + shadcn/ui
+- **API**: ORPC (end-to-end type-safe APIs)
+- **State Management**: TanStack Query
+- **Internationalization**: next-intl
+- **Database**: PostgreSQL with Drizzle ORM
 
 ## Getting Started
 
-First, install the dependencies:
+### Prerequisites
+
+- Node.js 20+
+- pnpm 9+
+- PostgreSQL database
+
+### Installation
 
 ```bash
+# Install dependencies
 pnpm install
-```
 
-## Database Setup
+# Configure environment
+cp .env.example .env
+# Edit .env with your database connection string
 
-This project uses PostgreSQL with Drizzle ORM.
-
-1. Make sure you have a PostgreSQL database set up.
-2. Update your `apps/web/.env` file with your PostgreSQL connection details.
-
-3. Apply the schema to your database:
-
-```bash
+# Push schema to database
 pnpm run db:push
 ```
 
-Then, run the development server:
+### Development
 
 ```bash
+# Start all applications in development mode
 pnpm run dev
+
+# Start only the web application
+pnpm run dev:web
 ```
 
-Open [http://localhost:3001](http://localhost:3001) in your browser to see the fullstack application.
-
-## UI Customization
-
-React web apps in this stack share shadcn/ui primitives through `packages/ui`.
-
-- Change design tokens and global styles in `packages/ui/src/styles/globals.css`
-- Update shared primitives in `packages/ui/src/components/*`
-- Adjust shadcn aliases or style config in `packages/ui/components.json` and `apps/web/components.json`
-
-### Add more shared components
-
-Run this from the project root to add more primitives to the shared UI package:
-
-```bash
-npx shadcn@latest add accordion dialog popover sheet table -c packages/ui
-```
-
-Import shared components like this:
-
-```tsx
-import { Button } from "@whoisjudas/ui/components/button";
-```
-
-### Add app-specific blocks
-
-If you want to add app-specific blocks instead of shared primitives, run the shadcn CLI from `apps/web`.
-
-## Git Hooks and Formatting
-
-- Format and lint fix: `pnpm run check`
+Open [http://localhost:3001](http://localhost:3001) in your browser.
 
 ## Project Structure
 
 ```
 whoisjudas/
 ├── apps/
-│   └── web/         # Fullstack application (Next.js)
+│   └── web/                 # Fullstack Next.js application
+│       ├── server.ts        # Socket.IO server
+│       └── src/             # Next.js app router
 ├── packages/
-│   ├── ui/          # Shared shadcn/ui components and styles
-│   ├── api/         # API layer / business logic
-│   └── db/          # Database schema & queries
+│   ├── ui/                  # Shared shadcn/ui components
+│   ├── game/                # Game logic and state
+│   ├── data/                # Database schema & queries
+│   ├── api/                 # API layer
+│   ├── env/                 # Environment configuration
+│   └── config/              # Shared configs
+└── specs/                   # Feature specifications
 ```
+
+## Game Rules
+
+Players are divided into two teams: **Villagers** and **Judas** (the traitor). The villagers must identify the Judas before time runs out, while the Judas must evade detection.
+
+### Win Conditions
+
+- **Villagers Win**: Identify and vote out the Judas
+- **Judas Wins**: Survive until the end or blend in during final vote
 
 ## Available Scripts
 
-- `pnpm run dev`: Start all applications in development mode
-- `pnpm run build`: Build all applications
-- `pnpm run dev:web`: Start only the web application
-- `pnpm run check-types`: Check TypeScript types across all apps
-- `pnpm run db:push`: Push schema changes to database
-- `pnpm run db:generate`: Generate database client/types
-- `pnpm run db:migrate`: Run database migrations
-- `pnpm run db:studio`: Open database studio UI
-- `pnpm run check`: Run Biome formatting and linting
-- `cd apps/web && pnpm run generate-pwa-assets`: Generate PWA assets
+| Command | Description |
+|---------|-------------|
+| `pnpm run dev` | Start all applications in development mode |
+| `pnpm run build` | Build all applications |
+| `pnpm run dev:web` | Start only the web application |
+| `pnpm run check-types` | Check TypeScript types across all apps |
+| `pnpm run db:push` | Push schema changes to database |
+| `pnpm run db:generate` | Generate database client/types |
+| `pnpm run db:migrate` | Run database migrations |
+| `pnpm run db:studio` | Open database studio UI |
+| `pnpm run check` | Run Biome formatting and linting |
+| `cd apps/web && pnpm run generate-pwa-assets` | Generate PWA assets |
+
+## UI Customization
+
+### Design Tokens
+
+Change global styles and design tokens in:
+
+```bash
+packages/ui/src/styles/globals.css
+```
+
+### Adding Components
+
+Add shared primitives to the UI package:
+
+```bash
+npx shadcn@latest add accordion dialog popover sheet table -c packages/ui
+```
+
+Import shared components:
+
+```tsx
+import { Button } from "@whoisjudas/ui/components/button";
+```
+
+## Socket.IO Events
+
+### Client → Server
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `room:join` | `{ roomId, playerName }` | Join a game room |
+| `room:reconnect` | `{ roomId, playerId }` | Reconnect to existing session |
+| `room:ready` | `{}` | Player is ready to start |
+| `room:vote` | `{ targetId }` | Vote for a player |
+| `room:ability` | `{ targetId }` | Use role ability |
+
+### Server → Client
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `room:state` | `GameState` | Full game state update |
+| `room:player-joined` | `Player` | New player joined |
+| `room:player-left` | `{ playerId }` | Player left/disconnected |
+| `room:kicked` | `{ reason }` | Kicked from room |
+| `room:error` | `{ message }` | Error occurred |
+
+## License
+
+Private project - all rights reserved
