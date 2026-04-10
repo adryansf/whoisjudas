@@ -1,1 +1,21 @@
 @import "@whoisjudas/ui/globals.css";
+
+@layer base {
+	body {
+		background-image: url("/background.png");
+		background-attachment: fixed;
+		background-size: cover;
+		background-position: center 40%;
+		background-repeat: no-repeat;
+	}
+
+	/* Optional: Overlay to ensure readability on complex backgrounds */
+	body::before {
+		content: "";
+		position: fixed;
+		inset: 0;
+		background: oklch(0 0 0 / 0.4);
+		z-index: -1;
+		pointer-events: none;
+	}
+}

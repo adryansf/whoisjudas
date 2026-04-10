@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { useSocket } from "@/hooks/use-socket";
 import { useRouter } from "@/i18n/routing";
+import { translateError } from "@/lib/errors";
 
 export default function HomePage() {
 	const t = useTranslations();
@@ -45,10 +46,10 @@ export default function HomePage() {
 				localStorage.setItem("playerId", response.playerId);
 				router.push(`/lobby/${response.roomCode}`);
 			} else {
-				setError(response.error || "Failed to create room");
+				setError(translateError(response.error, t));
 			}
 		} catch {
-			setError("Failed to create room");
+			setError(t("common.error"));
 		} finally {
 			setIsLoading(false);
 		}
@@ -80,10 +81,10 @@ export default function HomePage() {
 				localStorage.setItem("playerId", response.playerId);
 				router.push(`/lobby/${roomCode.trim().toUpperCase()}`);
 			} else {
-				setError(response.error || "Failed to join room");
+				setError(translateError(response.error, t));
 			}
 		} catch {
-			setError("Failed to join room");
+			setError(t("common.failedToJoin"));
 		} finally {
 			setIsLoading(false);
 		}
@@ -93,7 +94,7 @@ export default function HomePage() {
 		<div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center p-4">
 			<div className="w-full max-w-md space-y-6">
 				<div className="space-y-4 text-center">
-					<p className="font-medium text-foreground text-lg">
+					<p className="font-medium text-foreground text-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
 						{t("home.subtitle")}
 					</p>
 				</div>
@@ -141,7 +142,7 @@ export default function HomePage() {
 						{error && <p className="text-destructive text-sm">{error}</p>}
 						<div className="flex gap-2">
 							<Button
-								variant="outline"
+								variant="secondary"
 								onClick={() => {
 									setMode("home");
 									setError("");

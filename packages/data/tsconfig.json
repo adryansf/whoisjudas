@@ -1,0 +1,12 @@
+{
+	"extends": "@whoisjudas/config/tsconfig.base.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"resolveJsonModule": true,
+		"paths": {
+			"@whoisjudas/data/*": ["./src/*"]
+		}
+	},
+	"include": ["src/**/*.ts", "src/**/*.json"],
+	"exclude": ["node_modules"]
+}
