@@ -96,7 +96,7 @@ export default function LobbyPage() {
 				}
 			})
 			.catch(() => {
-				setError("Connection error");
+				setError(t("common.connectionError"));
 			})
 			.finally(() => {
 				setIsLoading(false);
@@ -145,7 +145,9 @@ export default function LobbyPage() {
 			(data: { settings: { questionDuration: number } }) => {
 				setSettings(data.settings);
 				toast.info(
-					`Round time updated to ${data.settings.questionDuration / 60}m`,
+					t("lobby.roundTimeUpdated", {
+						time: data.settings.questionDuration / 60,
+					}),
 				);
 			},
 		);

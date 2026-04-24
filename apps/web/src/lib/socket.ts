@@ -17,7 +17,7 @@ function getBrowserSessionId(): string {
 
 export function getSocket(): Socket {
 	if (!socket) {
-		socket = io({
+		socket = io(process.env.NEXT_PUBLIC_SOCKET_URL ?? "http://localhost:3001", {
 			path: "/socket.io",
 			transports: ["websocket", "polling"],
 			auth: {
