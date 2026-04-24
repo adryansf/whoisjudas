@@ -1,16 +1,16 @@
+import type { Player } from "@whoisjudas/game";
+import * as GAME from "@whoisjudas/game";
 import type { Socket } from "socket.io";
+import { isRateLimited } from "../lib/rate-limit.js";
 import type { PlayerInfo } from "../types.js";
 import type { SocketState } from "./rooms.js";
-import type { Player } from "@whoisjudas/game";
 import {
 	createSocketState,
+	getPlayerCountInRoom,
+	getSocketsInRoom,
 	registerSocket,
 	unregisterSocket,
-	getSocketsInRoom,
-	getPlayerCountInRoom,
 } from "./rooms.js";
-import { isRateLimited } from "../lib/rate-limit.js";
-import * as GAME from "@whoisjudas/game";
 
 const state: SocketState = createSocketState();
 const roomTimers = new Map<string, ReturnType<typeof setInterval>>();

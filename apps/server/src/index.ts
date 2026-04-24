@@ -1,11 +1,10 @@
 import { createServer } from "http";
 import { Server } from "socket.io";
-import { setupConnectionHandlers } from "./socket/handler.js";
 import {
 	startRateLimitCleanup,
 	stopRateLimitCleanup,
 } from "./lib/rate-limit.js";
-import { getRoomTimers } from "./socket/handler.js";
+import { getRoomTimers, setupConnectionHandlers } from "./socket/handler.js";
 
 const PORT = process.env.PORT ? Number.parseInt(process.env.PORT, 10) : 3001;
 const CORS_ORIGIN = process.env.CORS_ORIGIN || "*";
@@ -59,4 +58,4 @@ httpServer.listen(PORT, () => {
 	console.log(`  CORS Origin: ${CORS_ORIGIN}`);
 });
 
-export { io, httpServer };
+export { httpServer, io };
