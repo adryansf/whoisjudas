@@ -2,6 +2,7 @@
 
 import { loadStories } from "@whoisjudas/data";
 import { Button } from "@whoisjudas/ui/components/button";
+import { Card } from "@whoisjudas/ui/components/card";
 import {
 	Dialog,
 	DialogContent,
@@ -9,7 +10,6 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@whoisjudas/ui/components/dialog";
-import { Card } from "@whoisjudas/ui/components/card";
 import {
 	Select,
 	SelectContent,
@@ -65,6 +65,7 @@ export default function GamePage() {
 	const [hasVoted, setHasVoted] = useState(false);
 	const [hasGuessed, setHasGuessed] = useState(false);
 	const [showCharactersDialog, setShowCharactersDialog] = useState(false);
+	const [selectedStoryForChars, setSelectedStoryForChars] = useState<string | null>(null);
 	const [revealData, setRevealData] = useState<{
 		judasId: string;
 		judasName: string;
@@ -93,7 +94,9 @@ export default function GamePage() {
 		.filter((p) => p.id !== playerId)
 		.map((player) => ({ value: player.id, label: player.name }));
 
-	const storyItems = allStories.map((s) => ({ value: s.id, label: s.title }));
+const storyItems = allStories
+		.map((s) => ({ value: s.id, label: s.title }))
+		.sort((a, b) => a.label.localeCompare(b.label, locale));
 
 	// Ref to track players count for stale closure fix
 	const playersCountRef = useRef(players.length);
@@ -391,8 +394,14 @@ export default function GamePage() {
 					</Card>
 
 					{gameData.role === "disciple" && currentStory && (
-						<Dialog open={showCharactersDialog} onOpenChange={setShowCharactersDialog}>
-							<Card className="p-4 cursor-pointer" onClick={() => setShowCharactersDialog(true)}>
+						<Dialog
+							open={showCharactersDialog}
+							onOpenChange={setShowCharactersDialog}
+						>
+							<Card
+								className="cursor-pointer p-4"
+								onClick={() => setShowCharactersDialog(true)}
+							>
 								<p className="text-muted-foreground text-sm">
 									{t("game.theStory")}
 								</p>
@@ -400,7 +409,7 @@ export default function GamePage() {
 								<p className="mt-2 text-muted-foreground">
 									{currentStory.description}
 								</p>
-								<p className="mt-2 text-xs text-primary">
+								<p className="mt-2 text-primary text-xs">
 									{t("game.clickToSeeCharacters")}
 								</p>
 							</Card>
@@ -409,11 +418,18 @@ export default function GamePage() {
 									<DialogTitle>{currentStory.title}</DialogTitle>
 								</DialogHeader>
 								<div className="space-y-4 pb-4">
-									<p className="text-muted-foreground text-sm">{currentStory.description}</p>
+									<p className="text-muted-foreground text-sm">
+										{currentStory.description}
+									</p>
 									<div className="space-y-2">
-										<p className="font-semibold text-sm">{t("game.characters")}</p>
+										<p className="font-semibold text-sm">
+											{t("game.characters")}
+										</p>
 										{currentStory.characters.map((char) => (
-											<div key={char.id} className="flex items-center gap-3 p-3 border rounded-lg">
+											<div
+												key={char.id}
+												className="flex items-center gap-3 rounded-lg border p-3"
+											>
 												<span className="font-medium">{char.name}</span>
 											</div>
 										))}
@@ -429,19 +445,59 @@ export default function GamePage() {
 								{t("game.possibleStories")}
 							</p>
 							<div className="flex flex-wrap gap-2">
-								{allStories.map((s) => (
-									<span
-										key={s.id}
-										className={cn(
-											"rounded-md border px-2 py-1 text-xs",
-											gameData.role === "disciple" && gameData.storyId === s.id
-												? "border-primary bg-primary/10 font-bold text-primary"
-												: "bg-muted text-muted-foreground",
-										)}
-									>
-										{s.title}
-									</span>
-								))}
+								{allStories
+									.slice()
+									.sort((a, b) => a.title.localeCompare(b.title, locale))
+									.map((s) => (
+										<Dialog
+											key={s.id}
+											open={selectedStoryForChars === s.id}
+											onOpenChange={(open) =>
+												setSelectedStoryForChars(open ? s.id : null)
+											}
+										>
+											<DialogTrigger
+												render={
+													<span
+														className={cn(
+															"cursor-pointer rounded-md border px-2 py-1 text-xs",
+															gameData.role === "disciple" &&
+																gameData.storyId === s.id
+																? "border-primary bg-primary/10 font-bold text-primary"
+																: "bg-muted text-muted-foreground hover:bg-muted/80",
+														)}
+													>
+														{s.title}
+													</span>
+												}
+											/>
+											<DialogContent className="max-h-[80vh] overflow-y-auto">
+												<DialogHeader>
+													<DialogTitle>{s.title}</DialogTitle>
+												</DialogHeader>
+												<div className="space-y-4 pb-4">
+													<p className="text-muted-foreground text-sm">
+														{s.description}
+													</p>
+													<div className="space-y-2">
+														<p className="font-semibold text-sm">
+															{t("game.characters")}
+														</p>
+														{s.characters.map((char) => (
+															<div
+																key={char.id}
+																className="flex items-center gap-3 rounded-lg border p-3"
+															>
+																<span className="font-medium">
+																	{char.name}
+																</span>
+															</div>
+														))}
+													</div>
+												</div>
+											</DialogContent>
+										</Dialog>
+									))}
 							</div>
 						</Card>
 					)}

@@ -7,7 +7,7 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from "@whoisjudas/ui/components/dialog";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
 interface StoryOption {
@@ -31,6 +31,7 @@ export function StoryGuessModal({
 	disabled = false,
 }: StoryGuessModalProps) {
 	const t = useTranslations();
+	const locale = useLocale();
 	const [selectedStory, setSelectedStory] = useState<string>("");
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -56,18 +57,21 @@ export function StoryGuessModal({
 						{t("game.selectStory")}
 					</p>
 					<div className="space-y-2">
-						{possibleStories.map((story) => (
-							<Button
-								key={story.id}
-								type="button"
-								variant={selectedStory === story.id ? "default" : "outline"}
-								className="w-full justify-start text-left"
-								onClick={() => setSelectedStory(story.id)}
-								disabled={disabled || isSubmitting}
-							>
-								{story.title}
-							</Button>
-						))}
+						{possibleStories
+							.slice()
+							.sort((a, b) => a.title.localeCompare(b.title, locale))
+							.map((story) => (
+								<Button
+									key={story.id}
+									type="button"
+									variant={selectedStory === story.id ? "default" : "outline"}
+									className="w-full justify-start text-left"
+									onClick={() => setSelectedStory(story.id)}
+									disabled={disabled || isSubmitting}
+								>
+									{story.title}
+								</Button>
+							))}
 					</div>
 					<Button
 						onClick={handleSubmit}
