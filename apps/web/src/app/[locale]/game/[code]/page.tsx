@@ -2,6 +2,13 @@
 
 import { loadStories } from "@whoisjudas/data";
 import { Button } from "@whoisjudas/ui/components/button";
+import {
+	Dialog,
+	DialogContent,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "@whoisjudas/ui/components/dialog";
 import { Card } from "@whoisjudas/ui/components/card";
 import {
 	Select,
@@ -57,6 +64,7 @@ export default function GamePage() {
 	const [selectedGuess, setSelectedGuess] = useState<string>("");
 	const [hasVoted, setHasVoted] = useState(false);
 	const [hasGuessed, setHasGuessed] = useState(false);
+	const [showCharactersDialog, setShowCharactersDialog] = useState(false);
 	const [revealData, setRevealData] = useState<{
 		judasId: string;
 		judasName: string;
@@ -270,8 +278,8 @@ export default function GamePage() {
 
 	return (
 		<ErrorBoundary>
-			<div className="flex min-h-[calc(100vh-4rem)] flex-col items-center p-4">
-				<div className="w-full max-w-md space-y-4">
+			<div className="flex min-h-[calc(100vh-4rem)] flex-col items-center p-4 pb-24">
+				<div className="w-full max-w-md space-y-4 pb-4">
 					{phase !== "reveal" && <TimerCard initialSeconds={timer} />}
 
 					{phase === "vote" && gameData.role === "disciple" && !hasVoted && (
@@ -383,15 +391,36 @@ export default function GamePage() {
 					</Card>
 
 					{gameData.role === "disciple" && currentStory && (
-						<Card className="p-4">
-							<p className="text-muted-foreground text-sm">
-								{t("game.theStory")}
-							</p>
-							<p className="font-semibold text-lg">{currentStory.title}</p>
-							<p className="mt-2 text-muted-foreground">
-								{currentStory.description}
-							</p>
-						</Card>
+						<Dialog open={showCharactersDialog} onOpenChange={setShowCharactersDialog}>
+							<Card className="p-4 cursor-pointer" onClick={() => setShowCharactersDialog(true)}>
+								<p className="text-muted-foreground text-sm">
+									{t("game.theStory")}
+								</p>
+								<p className="font-semibold text-lg">{currentStory.title}</p>
+								<p className="mt-2 text-muted-foreground">
+									{currentStory.description}
+								</p>
+								<p className="mt-2 text-xs text-primary">
+									{t("game.clickToSeeCharacters")}
+								</p>
+							</Card>
+							<DialogContent className="max-h-[80vh] overflow-y-auto">
+								<DialogHeader>
+									<DialogTitle>{currentStory.title}</DialogTitle>
+								</DialogHeader>
+								<div className="space-y-4 pb-4">
+									<p className="text-muted-foreground text-sm">{currentStory.description}</p>
+									<div className="space-y-2">
+										<p className="font-semibold text-sm">{t("game.characters")}</p>
+										{currentStory.characters.map((char) => (
+											<div key={char.id} className="flex items-center gap-3 p-3 border rounded-lg">
+												<span className="font-medium">{char.name}</span>
+											</div>
+										))}
+									</div>
+								</div>
+							</DialogContent>
+						</Dialog>
 					)}
 
 					{(phase === "question" || phase === "vote") && (

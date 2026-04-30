@@ -225,13 +225,10 @@ export default function LobbyPage() {
 		setError("");
 
 		try {
-			const response = await emit<
-				{ roomCode: string; playerId: string },
-				{ success: boolean; error?: string }
-			>("game:start", {
-				roomCode,
-				playerId: playerId || "",
-			});
+			const response = await emit<unknown, { success: boolean; error?: string }>(
+				"game:start",
+				undefined
+			);
 			if (!response.success) {
 				setError(
 					translateError(response.error, t) || t("common.failedToStart"),

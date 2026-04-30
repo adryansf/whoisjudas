@@ -71,7 +71,13 @@ export default function HomePage() {
 		try {
 			const response = await emit<
 				{ roomCode: string; playerName: string },
-				{ success: boolean; playerId?: string; error?: string }
+				{
+					success: boolean;
+					playerId?: string;
+					players?: Array<{ id: string; name: string; isConnected: boolean }>;
+					hostId?: string;
+					error?: string;
+				}
 			>("room:join", {
 				roomCode: roomCode.trim(),
 				playerName: name.trim(),

@@ -11,8 +11,9 @@
 		"lint": "biome check ."
 	},
 	"dependencies": {
+		"@whoisjudas/game": "workspace:*",
 		"socket.io": "^4.8.1",
-		"@whoisjudas/game": "workspace:*"
+		"zod": "catalog:"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",

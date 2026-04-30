@@ -5,6 +5,14 @@ import { isRateLimited } from "../lib/rate-limit.js";
 import type { PlayerInfo } from "../types.js";
 import type { SocketState } from "./rooms.js";
 import {
+	CreateRoomSchema,
+	JoinRoomSchema,
+	ReconnectSchema,
+	UpdateSettingsSchema,
+	VoteCastSchema,
+	JudasGuessSchema,
+} from "./validation.js";
+import {
 	createSocketState,
 	getPlayerCountInRoom,
 	getSocketsInRoom,
@@ -14,6 +22,8 @@ import {
 
 const state: SocketState = createSocketState();
 const roomTimers = new Map<string, ReturnType<typeof setInterval>>();
+
+const VOTE_DURATION_SECONDS = 300;
 
 export function getSocketState(): SocketState {
 	return state;
@@ -59,7 +69,7 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 		socket.on(
 			"room:create",
 			async (
-				payload: { hostName: string },
+				payload: unknown,
 				callback: (res: {
 					success: boolean;
 					roomCode?: string;
@@ -73,23 +83,29 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 					return;
 				}
 
+				const result = CreateRoomSchema.safeParse(payload);
+				if (!result.success) {
+					callback({ success: false, error: "Invalid payload" });
+					return;
+				}
+
 				try {
-					const result = GAME.createRoom(payload.hostName);
+					const gameResult = GAME.createRoom(result.data.hostName);
 					const updatedInfo: PlayerInfo = {
 						...playerInfo,
-						playerId: result.playerId,
-						roomCode: result.roomCode,
+						playerId: gameResult.playerId,
+						roomCode: gameResult.roomCode,
 						isHost: true,
 					};
 					registerSocket(state, socket.id, updatedInfo);
 
-					socket.join(result.roomCode);
+					socket.join(gameResult.roomCode);
 
 					callback({
 						success: true,
-						roomCode: result.roomCode,
-						playerId: result.playerId,
-						hostId: result.playerId,
+						roomCode: gameResult.roomCode,
+						playerId: gameResult.playerId,
+						hostId: gameResult.playerId,
 					});
 				} catch (err) {
 					callback({
@@ -103,7 +119,7 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 		socket.on(
 			"room:join",
 			async (
-				payload: { roomCode: string; playerName: string },
+				payload: unknown,
 				callback: (res: {
 					success: boolean;
 					playerId?: string;
@@ -117,41 +133,47 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 					return;
 				}
 
+				const result = JoinRoomSchema.safeParse(payload);
+				if (!result.success) {
+					callback({ success: false, error: "Invalid payload" });
+					return;
+				}
+
 				try {
-					const result = GAME.joinRoom(
-						payload.roomCode.toUpperCase(),
-						payload.playerName,
+					const gameResult = GAME.joinRoom(
+						result.data.roomCode,
+						result.data.playerName,
 					);
 
 					const updatedInfo: PlayerInfo = {
 						...playerInfo,
-						playerId: result.player.id,
-						roomCode: payload.roomCode.toUpperCase(),
-						playerName: payload.playerName,
+						playerId: gameResult.player.id,
+						roomCode: result.data.roomCode,
+						playerName: result.data.playerName,
 					};
 					registerSocket(state, socket.id, updatedInfo);
 
-					socket.join(payload.roomCode.toUpperCase());
+					socket.join(result.data.roomCode);
 
 					callback({
 						success: true,
-						playerId: result.player.id,
-						players: result.players,
-						hostId: result.hostId,
+						playerId: gameResult.player.id,
+						players: gameResult.players,
+						hostId: gameResult.hostId,
 					});
 
 					const playerCount = getPlayerCountInRoom(
 						state,
-						payload.roomCode.toUpperCase(),
+						result.data.roomCode,
 					);
 					emitRoomUpdate(
 						io,
-						payload.roomCode.toUpperCase(),
+						result.data.roomCode,
 						"room:player-joined",
 						{
 							player: {
-								id: result.player.id,
-								name: result.player.name,
+								id: gameResult.player.id,
+								name: gameResult.player.name,
 								isConnected: true,
 							},
 							playerCount,
@@ -168,7 +190,10 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 
 		socket.on(
 			"room:leave",
-			async (callback: (res: { success: boolean; error?: string }) => void) => {
+			async (
+				_payload: unknown,
+				callback: (res: { success: boolean; error?: string }) => void,
+			) => {
 				const info = getPlayerInfo(socket);
 				if (!info.roomCode || !info.playerId) {
 					callback({ success: false, error: "Not in a room" });
@@ -212,7 +237,7 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 		socket.on(
 			"room:reconnect",
 			async (
-				payload: { roomCode: string; playerId: string },
+				payload: unknown,
 				callback: (res: {
 					success: boolean;
 					gameState?: unknown;
@@ -224,19 +249,25 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 					return;
 				}
 
+				const result = ReconnectSchema.safeParse(payload);
+				if (!result.success) {
+					callback({ success: false, error: "Invalid payload" });
+					return;
+				}
+
 				try {
 					const gameState = GAME.reconnectPlayer(
-						payload.roomCode.toUpperCase(),
-						payload.playerId,
+						result.data.roomCode,
+						result.data.playerId,
 					);
 
 					const updatedInfo: PlayerInfo = {
 						...playerInfo,
-						playerId: payload.playerId,
-						roomCode: payload.roomCode.toUpperCase(),
+						playerId: result.data.playerId,
+						roomCode: result.data.roomCode,
 					};
 					registerSocket(state, socket.id, updatedInfo);
-					socket.join(payload.roomCode.toUpperCase());
+					socket.join(result.data.roomCode);
 
 					callback({ success: true, gameState });
 				} catch (err) {
@@ -251,7 +282,7 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 		socket.on(
 			"room:update-settings",
 			async (
-				payload: { roomCode: string; settings: { questionDuration: number } },
+				payload: unknown,
 				callback: (res: { success: boolean; error?: string }) => void,
 			) => {
 				const info = getPlayerInfo(socket);
@@ -260,19 +291,25 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 					return;
 				}
 
+				const result = UpdateSettingsSchema.safeParse(payload);
+				if (!result.success) {
+					callback({ success: false, error: "Invalid payload" });
+					return;
+				}
+
 				try {
 					GAME.updateSettings(
-						payload.roomCode.toUpperCase(),
+						result.data.roomCode,
 						info.playerId,
-						payload.settings,
+						result.data.settings,
 					);
 
 					emitRoomUpdate(
 						io,
-						payload.roomCode.toUpperCase(),
+						result.data.roomCode,
 						"room:settings-updated",
 						{
-							settings: payload.settings,
+							settings: result.data.settings,
 						},
 					);
 					callback({ success: true });
@@ -288,7 +325,7 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 		socket.on(
 			"game:start",
 			async (
-				_payload: { roomCode?: string; playerId?: string },
+				_payload: unknown,
 				callback: (res: { success: boolean; error?: string }) => void,
 			) => {
 				const info = getPlayerInfo(socket);
@@ -298,7 +335,7 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 				}
 
 				try {
-					const result = GAME.startGame(info.roomCode, info.playerId);
+					GAME.startGame(info.roomCode, info.playerId);
 
 					startGameTimer(io, info.roomCode);
 
@@ -320,7 +357,7 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 		socket.on(
 			"vote:cast",
 			async (
-				payload: { targetId: string },
+				payload: unknown,
 				callback: (res: { success: boolean; error?: string }) => void,
 			) => {
 				const info = getPlayerInfo(socket);
@@ -329,11 +366,17 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 					return;
 				}
 
+				const result = VoteCastSchema.safeParse(payload);
+				if (!result.success) {
+					callback({ success: false, error: "Invalid payload" });
+					return;
+				}
+
 				try {
-					const result = GAME.castVote(
+					const gameResult = GAME.castVote(
 						info.roomCode,
 						info.playerId,
-						payload.targetId,
+						result.data.targetId,
 					);
 
 					const room = GAME.getRoom(info.roomCode);
@@ -343,9 +386,11 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 					).length;
 
 					emitRoomUpdate(io, info.roomCode, "vote:update", {
-						votesCounted: result.votesCounted,
+						votesCounted: gameResult.votesCounted,
 						totalVoters: disciples,
 					});
+
+					checkRoundCompletion(io, info.roomCode);
 
 					callback({ success: true });
 				} catch (err) {
@@ -360,7 +405,7 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 		socket.on(
 			"judas:guess",
 			async (
-				payload: { storyId: string },
+				payload: unknown,
 				callback: (res: {
 					success: boolean;
 					correct?: boolean;
@@ -373,13 +418,21 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 					return;
 				}
 
+				const result = JudasGuessSchema.safeParse(payload);
+				if (!result.success) {
+					callback({ success: false, error: "Invalid payload" });
+					return;
+				}
+
 				try {
-					const result = GAME.judasGuess(
+					const gameResult = GAME.judasGuess(
 						info.roomCode,
 						info.playerId,
-						payload.storyId,
+						result.data.storyId,
 					);
-					callback({ success: true, correct: result.correct });
+					callback({ success: true, correct: gameResult.correct });
+
+					checkRoundCompletion(io, info.roomCode);
 				} catch (err) {
 					callback({
 						success: false,
@@ -391,14 +444,29 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 
 		socket.on(
 			"game:play-again",
-			async (callback: (res: { success: boolean; error?: string }) => void) => {
+			async (
+				_payload: unknown,
+				callback: (res: { success: boolean; error?: string }) => void,
+			) => {
 				const info = getPlayerInfo(socket);
-				if (!info.roomCode) {
+				if (!info.roomCode || !info.playerId) {
 					callback({ success: false, error: "Not in a room" });
 					return;
 				}
 
+				const room = GAME.getRoom(info.roomCode);
+				if (!room || room.hostId !== info.playerId) {
+					callback({ success: false, error: "Only host can restart" });
+					return;
+				}
+
 				try {
+					const timer = roomTimers.get(info.roomCode);
+					if (timer) {
+						clearInterval(timer);
+						roomTimers.delete(info.roomCode);
+					}
+
 					GAME.playAgain(info.roomCode);
 
 					const socketsInRoom = getSocketsInRoom(state, info.roomCode);
@@ -417,21 +485,17 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 		);
 
 		socket.on("disconnect", (reason: string) => {
-			const info = unregisterSocket(state, socket.id);
-			if (info?.roomCode) {
-				const timer = roomTimers.get(info.roomCode);
-				if (timer) {
-					clearInterval(timer);
-					roomTimers.delete(info.roomCode);
-				}
+			const socketId = socket.id;
+			const info = unregisterSocket(state, socketId);
 
-				const playerCount = getPlayerCountInRoom(state, info.roomCode);
-				emitRoomUpdate(io, info.roomCode, "room:player-left", {
-					playerId: info.playerId,
-					playerName: info.playerName,
-					playerCount,
-				});
-			}
+			if (!info?.roomCode || !info.playerId) return;
+
+			const playerCount = getPlayerCountInRoom(state, info.roomCode);
+			emitRoomUpdate(io, info.roomCode, "room:player-left", {
+				playerId: info.playerId,
+				playerName: info.playerName,
+				playerCount,
+			});
 		});
 	});
 }
@@ -450,20 +514,112 @@ function startGameTimer(
 
 	const interval = setInterval(() => {
 		const currentRoom = GAME.getRoom(roomCode);
-		if (!currentRoom || currentRoom.state !== "playing") {
+		if (!currentRoom || currentRoom.state !== "playing" || !currentRoom.currentRound) {
 			clearInterval(interval);
 			roomTimers.delete(roomCode);
 			return;
 		}
 
-		const phase = currentRoom.currentRound?.phase || "question";
-		const timerRemaining = currentRoom.currentRound?.timerRemaining || 0;
+		const round = currentRoom.currentRound;
+
+		if (round.phase === "reveal") {
+			clearInterval(interval);
+			roomTimers.delete(roomCode);
+			return;
+		}
+
+		round.timerRemaining--;
 
 		const socketsInRoom = getSocketsInRoom(state, roomCode);
 		for (const socketId of socketsInRoom) {
-			io.to(socketId).emit("game:timer", { timerRemaining, phase });
+			io.to(socketId).emit("game:timer", {
+				timerRemaining: round.timerRemaining,
+				phase: round.phase,
+			});
+		}
+
+		if (round.timerRemaining <= 0) {
+			if (round.phase === "question") {
+				round.phase = "vote";
+				round.timerRemaining = VOTE_DURATION_SECONDS;
+				round.timerSeconds = VOTE_DURATION_SECONDS;
+
+				for (const socketId of socketsInRoom) {
+					io.to(socketId).emit("game:phase-change", {
+						phase: "vote",
+						timerSeconds: VOTE_DURATION_SECONDS,
+					});
+				}
+			} else if (round.phase === "vote") {
+				triggerReveal(io, roomCode);
+				clearInterval(interval);
+				roomTimers.delete(roomCode);
+			}
 		}
 	}, 1000);
 
 	roomTimers.set(roomCode, interval);
+}
+
+function checkRoundCompletion(
+	io: import("socket.io").Server,
+	roomCode: string,
+): void {
+	const room = GAME.getRoom(roomCode);
+	if (!room || room.state !== "playing" || !room.currentRound) return;
+
+	const round = room.currentRound;
+	if (round.phase !== "vote") return;
+
+	const players = Array.from(room.players.values());
+	const disciples = players.filter((p) => p.role === "disciple" && p.isConnected);
+	const judas = players.find((p) => p.role === "judas");
+
+	const allDisciplesVoted = disciples.every((p) => p.vote);
+
+	if (judas?.isConnected) {
+		const judasGuessed = judas?.judasGuess !== undefined;
+		if (allDisciplesVoted && judasGuessed) {
+			triggerReveal(io, roomCode);
+		}
+	} else {
+		if (allDisciplesVoted) {
+			triggerReveal(io, roomCode);
+		}
+	}
+}
+
+function triggerReveal(
+	io: import("socket.io").Server,
+	roomCode: string,
+): void {
+	const room = GAME.getRoom(roomCode);
+	if (!room || room.state !== "playing" || !room.currentRound) return;
+
+	const round = room.currentRound;
+	if (round.phase === "reveal") return;
+
+	round.phase = "reveal";
+	round.outcome = GAME.determineWinner(room);
+
+	const interval = roomTimers.get(roomCode);
+	if (interval) {
+		clearInterval(interval);
+		roomTimers.delete(roomCode);
+	}
+
+	const judas = room.players.get(round.judasId);
+
+	io.to(roomCode).emit("game:reveal", {
+		judasId: round.judasId,
+		judasName: judas?.name || "Unknown",
+		storyId: round.storyId,
+		winner: round.outcome?.split("-")[0] || "tie",
+		votes: Array.from(round.votes.entries()).map(([voterId, targetId]) => ({
+			voterId,
+			voterName: room.players.get(voterId)?.name || "Unknown",
+			targetId,
+		})),
+		judasGuess: judas?.judasGuess,
+	});
 }
