@@ -287,7 +287,10 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 
 		socket.on(
 			"game:start",
-			async (callback: (res: { success: boolean; error?: string }) => void) => {
+			async (
+				_payload: { roomCode?: string; playerId?: string },
+				callback: (res: { success: boolean; error?: string }) => void,
+			) => {
 				const info = getPlayerInfo(socket);
 				if (!info.roomCode || !info.playerId) {
 					callback({ success: false, error: "Not in a room" });
