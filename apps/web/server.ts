@@ -282,10 +282,10 @@ async function startRoomTimer(io: Server, roomCode: string) {
 		// Decrement timer and broadcast to all players
 		round.timerRemaining--;
 
-		safeEmit(io, roomCode.toUpperCase(), "game:timer", {
-			timerRemaining,
-			phase: "vote",
-		});
+safeEmit(io, roomCode.toUpperCase(), "game:timer", {
+				timerRemaining: round.timerRemaining,
+				phase: "vote",
+			});
 
 		// Timer reached zero - advance phase
 		if (round.timerRemaining <= 0) {
@@ -766,8 +766,8 @@ app.prepare().then(() => {
 
 						if (result.newHostId) {
 							safeEmit(io, playerInfo.roomCode, "room:host-changed", {
-								newHostId: newHostId,
-								newHostName: newHost.name,
+								newHostId: result.newHostId,
+								newHostName: result.newHostName,
 							});
 						}
 					}
@@ -909,7 +909,7 @@ app.prepare().then(() => {
 						return;
 					}
 
-					const result: CastVoteResult = castVote(
+					const result = castVote(
 						playerInfo.roomCode,
 						playerInfo.playerId,
 						targetId,
@@ -917,8 +917,8 @@ app.prepare().then(() => {
 
 					// Broadcast updated vote count
 					safeEmit(io, playerInfo.roomCode, "vote:update", {
-						votesCounted: gameResult.votesCounted,
-						totalVoters: disciples,
+						votesCounted: result.votesCounted,
+						totalVoters: result.totalVoters,
 					});
 
 					// Check if all votes are in - may trigger reveal
@@ -1098,7 +1098,8 @@ app.prepare().then(() => {
 							if (room.players.has(playerInfo.playerId)) {
 								safeEmit(io, playerInfo.roomCode, "room:player-left", {
 									playerId: playerInfo.playerId,
-									playerName: existingPlayer?.name || "Unknown",
+									playerName:
+										room.players.get(playerInfo.playerId)?.name || "Unknown",
 									playerCount: room.players.size,
 								});
 							}

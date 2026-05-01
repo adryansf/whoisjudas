@@ -425,8 +425,13 @@ export default function LobbyPage() {
 							</div>
 						))}
 					</div>
+					{!isHost && players.length >= 3 && (
+						<p className="text-center text-muted-foreground text-sm pt-2">
+							{t("lobby.waitingForHost")}
+						</p>
+					)}
 					{players.length < 3 && (
-						<p className="text-center text-muted-foreground text-sm">
+						<p className="text-center text-muted-foreground text-sm pt-2">
 							{t("lobby.minPlayersRequired")}
 						</p>
 					)}
@@ -450,12 +455,6 @@ export default function LobbyPage() {
 						</Button>
 					)}
 				</div>
-
-				{!isHost && players.length >= 3 && (
-					<p className="text-center text-muted-foreground text-sm">
-						{t("lobby.waitingForHost")}
-					</p>
-				)}
 			</div>
 		</div>
 	);

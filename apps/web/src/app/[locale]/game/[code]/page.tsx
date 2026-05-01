@@ -460,7 +460,8 @@ export default function GamePage() {
 										>
 											<DialogTrigger
 												render={
-													<span
+													<button
+														type="button"
 														className={cn(
 															"cursor-pointer rounded-md border px-2 py-1 text-xs",
 															gameData.role === "disciple" &&
@@ -470,7 +471,7 @@ export default function GamePage() {
 														)}
 													>
 														{s.title}
-													</span>
+													</button>
 												}
 											/>
 											<DialogContent className="max-h-[80vh] overflow-y-auto">
