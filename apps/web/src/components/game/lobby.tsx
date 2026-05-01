@@ -58,6 +58,16 @@ export function Lobby({
 
 			<Card className="max-h-[300px] overflow-y-auto p-4">
 				<PlayerList players={players} hostId={hostId} />
+				{!isHost && players.length >= 3 && (
+					<p className="text-center text-muted-foreground text-sm pt-2">
+						{t("lobby.waitingForHost")}
+					</p>
+				)}
+				{!canStart && (
+					<p className="text-center text-muted-foreground text-sm pt-2">
+						{t("lobby.needMorePlayers")}
+					</p>
+				)}
 			</Card>
 
 			{error && <p className="text-center text-destructive text-sm">{error}</p>}
@@ -74,20 +84,6 @@ export function Lobby({
 					>
 						{isStarting ? t("lobby.starting") : t("lobby.startGame")}
 					</Button>
-				)}
-			</div>
-
-			<div className="pb-6">
-				{!isHost && canStart && (
-					<p className="text-center text-muted-foreground text-sm">
-						{t("lobby.waitingForHost")}
-					</p>
-				)}
-
-				{!canStart && (
-					<p className="text-center text-muted-foreground text-sm">
-						{t("lobby.needMorePlayers")}
-					</p>
 				)}
 			</div>
 		</div>

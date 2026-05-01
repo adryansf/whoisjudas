@@ -37,6 +37,31 @@
 		"guessFailed": "Failed to submit guess",
 		"failedToUpdateSettings": "Failed to update settings"
 	},
+	"rules": {
+		"title": "How to Play",
+		"objective": "Objective",
+		"objectiveLine1": "Find out who is Judas.",
+		"objectiveLine2": "Judas must guess the biblical story.",
+		"roles": "Roles",
+		"disciplesLabel": "Disciples:",
+		"disciplesDesc": "Know the story and try to identify Judas.",
+		"judasLabel": "Judas:",
+		"judasDesc": "Doesn't know the story and must pretend + guess at the end.",
+		"phases": "Phases",
+		"questionsLabel": "Questions:",
+		"questionsDesc": "Players ask each other questions to test knowledge.",
+		"voteLabel": "Vote:",
+		"voteDesc": "Each player chooses who they believe is Judas.",
+		"revealLabel": "Reveal:",
+		"revealDesc": "Roles are shown and Judas tries to guess the story.",
+		"victory": "Victory",
+		"disciplesWinLabel": "Disciples:",
+		"disciplesWinDesc": "Judas receives the majority of votes.",
+		"judasWinLabel": "Judas:",
+		"judasWinDesc": "Guesses the story correctly and doesn't receive majority.",
+		"tieLabel": "Tie:",
+		"tieDesc": "Any other case."
+	},
 	"nav": {
 		"home": "Home"
 	},

@@ -37,6 +37,31 @@
 		"guessFailed": "Falha ao enviar palpite",
 		"failedToUpdateSettings": "Falha ao atualizar configurações"
 	},
+	"rules": {
+		"title": "Como Jogar",
+		"objective": "Objetivo",
+		"objectiveLine1": "Descubra quem é o Judas.",
+		"objectiveLine2": "Judas precisa adivinhar a história bíblica.",
+		"roles": "Papéis",
+		"disciplesLabel": "Discípulos:",
+		"disciplesDesc": "Conhecem a história e tentam identificar o Judas.",
+		"judasLabel": "Judas:",
+		"judasDesc": "Não conhece a história e precisa fingir + adivinhar no final.",
+		"phases": "Fases",
+		"questionsLabel": "Perguntas:",
+		"questionsDesc": "Jogadores fazem perguntas entre si para testar o conhecimento.",
+		"voteLabel": "Votação:",
+		"voteDesc": "Cada jogador escolhe quem acredita ser o Judas.",
+		"revealLabel": "Revelação:",
+		"revealDesc": "Os papéis são mostrados e o Judas tenta adivinhar a história.",
+		"victory": "Vitória",
+		"disciplesWinLabel": "Discípulos:",
+		"disciplesWinDesc": "Judas recebe a maioria dos votos.",
+		"judasWinLabel": "Judas:",
+		"judasWinDesc": "Acerta a história e não recebe a maioria dos votos.",
+		"tieLabel": "Empate:",
+		"tieDesc": "Qualquer outro caso."
+	},
 	"nav": {
 		"home": "Início"
 	},

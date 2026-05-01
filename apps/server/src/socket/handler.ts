@@ -5,20 +5,20 @@ import { isRateLimited } from "../lib/rate-limit.js";
 import type { PlayerInfo } from "../types.js";
 import type { SocketState } from "./rooms.js";
 import {
-	CreateRoomSchema,
-	JoinRoomSchema,
-	ReconnectSchema,
-	UpdateSettingsSchema,
-	VoteCastSchema,
-	JudasGuessSchema,
-} from "./validation.js";
-import {
 	createSocketState,
 	getPlayerCountInRoom,
 	getSocketsInRoom,
 	registerSocket,
 	unregisterSocket,
 } from "./rooms.js";
+import {
+	CreateRoomSchema,
+	JoinRoomSchema,
+	JudasGuessSchema,
+	ReconnectSchema,
+	UpdateSettingsSchema,
+	VoteCastSchema,
+} from "./validation.js";
 
 const state: SocketState = createSocketState();
 const roomTimers = new Map<string, ReturnType<typeof setInterval>>();
@@ -55,6 +55,38 @@ function emitRoomUpdate(
 	}
 }
 
+function safeCallback<T>(
+	callback: ((res: T) => void) | undefined,
+	response: T,
+): void {
+	if (typeof callback === "function") {
+		try {
+			callback(response);
+		} catch (err) {
+			console.error(
+				"Callback error:",
+				err instanceof Error ? err.message : err,
+			);
+		}
+	}
+}
+
+function safeEmit(
+	io: import("socket.io").Server,
+	roomCode: string,
+	event: string,
+	...args: unknown[]
+): void {
+	try {
+		emitRoomUpdate(io, roomCode, event, ...args);
+	} catch (err) {
+		console.error(
+			`Failed to emit ${event}:`,
+			err instanceof Error ? err.message : err,
+		);
+	}
+}
+
 export function setupConnectionHandlers(io: import("socket.io").Server): void {
 	io.on("connection", (socket: Socket) => {
 		const browserSessionId = (
@@ -79,13 +111,13 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 				}) => void,
 			) => {
 				if (isRateLimited(socket.id)) {
-					callback({ success: false, error: "Rate limited" });
+					safeCallback(callback, { success: false, error: "Rate limited" });
 					return;
 				}
 
 				const result = CreateRoomSchema.safeParse(payload);
 				if (!result.success) {
-					callback({ success: false, error: "Invalid payload" });
+					safeCallback(callback, { success: false, error: "Invalid payload" });
 					return;
 				}
 
@@ -101,14 +133,14 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 
 					socket.join(gameResult.roomCode);
 
-					callback({
+					safeCallback(callback, {
 						success: true,
 						roomCode: gameResult.roomCode,
 						playerId: gameResult.playerId,
 						hostId: gameResult.playerId,
 					});
 				} catch (err) {
-					callback({
+					safeCallback(callback, {
 						success: false,
 						error: err instanceof Error ? err.message : "Unknown error",
 					});
@@ -129,13 +161,13 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 				}) => void,
 			) => {
 				if (isRateLimited(socket.id)) {
-					callback({ success: false, error: "Rate limited" });
+					safeCallback(callback, { success: false, error: "Rate limited" });
 					return;
 				}
 
 				const result = JoinRoomSchema.safeParse(payload);
 				if (!result.success) {
-					callback({ success: false, error: "Invalid payload" });
+					safeCallback(callback, { success: false, error: "Invalid payload" });
 					return;
 				}
 
@@ -155,32 +187,24 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 
 					socket.join(result.data.roomCode);
 
-					callback({
+					safeCallback(callback, {
 						success: true,
 						playerId: gameResult.player.id,
 						players: gameResult.players,
 						hostId: gameResult.hostId,
 					});
 
-					const playerCount = getPlayerCountInRoom(
-						state,
-						result.data.roomCode,
-					);
-					emitRoomUpdate(
-						io,
-						result.data.roomCode,
-						"room:player-joined",
-						{
-							player: {
-								id: gameResult.player.id,
-								name: gameResult.player.name,
-								isConnected: true,
-							},
-							playerCount,
+					const playerCount = getPlayerCountInRoom(state, result.data.roomCode);
+					safeEmit(io, result.data.roomCode, "room:player-joined", {
+						player: {
+							id: gameResult.player.id,
+							name: gameResult.player.name,
+							isConnected: true,
 						},
-					);
+						playerCount,
+					});
 				} catch (err) {
-					callback({
+					safeCallback(callback, {
 						success: false,
 						error: err instanceof Error ? err.message : "Unknown error",
 					});
@@ -203,7 +227,10 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 				try {
 					const result = GAME.leaveRoom(info.roomCode, info.playerId);
 					if (!result) {
-						callback({ success: false, error: "Failed to leave room" });
+						safeCallback(callback, {
+							success: false,
+							error: "Failed to leave room",
+						});
 						return;
 					}
 
@@ -211,22 +238,22 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 					socket.leave(info.roomCode);
 
 					const playerCount = getPlayerCountInRoom(state, info.roomCode);
-					emitRoomUpdate(io, info.roomCode, "room:player-left", {
+					safeEmit(io, info.roomCode, "room:player-left", {
 						playerId: info.playerId,
 						playerName: result.playerName,
 						playerCount,
 					});
 
 					if (result.newHostId) {
-						emitRoomUpdate(io, info.roomCode, "room:host-changed", {
+						safeEmit(io, info.roomCode, "room:host-changed", {
 							newHostId: result.newHostId,
 							newHostName: result.newHostName,
 						});
 					}
 
-					callback({ success: true });
+					safeCallback(callback, { success: true });
 				} catch (err) {
-					callback({
+					safeCallback(callback, {
 						success: false,
 						error: err instanceof Error ? err.message : "Unknown error",
 					});
@@ -245,13 +272,13 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 				}) => void,
 			) => {
 				if (isRateLimited(socket.id)) {
-					callback({ success: false, error: "Rate limited" });
+					safeCallback(callback, { success: false, error: "Rate limited" });
 					return;
 				}
 
 				const result = ReconnectSchema.safeParse(payload);
 				if (!result.success) {
-					callback({ success: false, error: "Invalid payload" });
+					safeCallback(callback, { success: false, error: "Invalid payload" });
 					return;
 				}
 
@@ -269,9 +296,9 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 					registerSocket(state, socket.id, updatedInfo);
 					socket.join(result.data.roomCode);
 
-					callback({ success: true, gameState });
+					safeCallback(callback, { success: true, gameState });
 				} catch (err) {
-					callback({
+					safeCallback(callback, {
 						success: false,
 						error: err instanceof Error ? err.message : "Unknown error",
 					});
@@ -287,13 +314,13 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 			) => {
 				const info = getPlayerInfo(socket);
 				if (!info.roomCode || !info.playerId) {
-					callback({ success: false, error: "Not in a room" });
+					safeCallback(callback, { success: false, error: "Not in a room" });
 					return;
 				}
 
 				const result = UpdateSettingsSchema.safeParse(payload);
 				if (!result.success) {
-					callback({ success: false, error: "Invalid payload" });
+					safeCallback(callback, { success: false, error: "Invalid payload" });
 					return;
 				}
 
@@ -304,17 +331,12 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 						result.data.settings,
 					);
 
-					emitRoomUpdate(
-						io,
-						result.data.roomCode,
-						"room:settings-updated",
-						{
-							settings: result.data.settings,
-						},
-					);
-					callback({ success: true });
+					safeEmit(io, result.data.roomCode, "room:settings-updated", {
+						settings: result.data.settings,
+					});
+					safeCallback(callback, { success: true });
 				} catch (err) {
-					callback({
+					safeCallback(callback, {
 						success: false,
 						error: err instanceof Error ? err.message : "Unknown error",
 					});
@@ -330,7 +352,7 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 			) => {
 				const info = getPlayerInfo(socket);
 				if (!info.roomCode || !info.playerId) {
-					callback({ success: false, error: "Not in a room" });
+					safeCallback(callback, { success: false, error: "Not in a room" });
 					return;
 				}
 
@@ -344,9 +366,9 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 						io.to(socketId).emit("game:started");
 					}
 
-					callback({ success: true });
+					safeCallback(callback, { success: true });
 				} catch (err) {
-					callback({
+					safeCallback(callback, {
 						success: false,
 						error: err instanceof Error ? err.message : "Unknown error",
 					});
@@ -362,13 +384,13 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 			) => {
 				const info = getPlayerInfo(socket);
 				if (!info.roomCode || !info.playerId) {
-					callback({ success: false, error: "Not in a room" });
+					safeCallback(callback, { success: false, error: "Not in a room" });
 					return;
 				}
 
 				const result = VoteCastSchema.safeParse(payload);
 				if (!result.success) {
-					callback({ success: false, error: "Invalid payload" });
+					safeCallback(callback, { success: false, error: "Invalid payload" });
 					return;
 				}
 
@@ -385,16 +407,16 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 						(p: Player) => p.role === "disciple",
 					).length;
 
-					emitRoomUpdate(io, info.roomCode, "vote:update", {
+					safeEmit(io, info.roomCode, "vote:update", {
 						votesCounted: gameResult.votesCounted,
 						totalVoters: disciples,
 					});
 
 					checkRoundCompletion(io, info.roomCode);
 
-					callback({ success: true });
+					safeCallback(callback, { success: true });
 				} catch (err) {
-					callback({
+					safeCallback(callback, {
 						success: false,
 						error: err instanceof Error ? err.message : "Unknown error",
 					});
@@ -414,13 +436,13 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 			) => {
 				const info = getPlayerInfo(socket);
 				if (!info.roomCode || !info.playerId) {
-					callback({ success: false, error: "Not in a room" });
+					safeCallback(callback, { success: false, error: "Not in a room" });
 					return;
 				}
 
 				const result = JudasGuessSchema.safeParse(payload);
 				if (!result.success) {
-					callback({ success: false, error: "Invalid payload" });
+					safeCallback(callback, { success: false, error: "Invalid payload" });
 					return;
 				}
 
@@ -430,11 +452,14 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 						info.playerId,
 						result.data.storyId,
 					);
-					callback({ success: true, correct: gameResult.correct });
+					safeCallback(callback, {
+						success: true,
+						correct: gameResult.correct,
+					});
 
 					checkRoundCompletion(io, info.roomCode);
 				} catch (err) {
-					callback({
+					safeCallback(callback, {
 						success: false,
 						error: err instanceof Error ? err.message : "Unknown error",
 					});
@@ -450,13 +475,16 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 			) => {
 				const info = getPlayerInfo(socket);
 				if (!info.roomCode || !info.playerId) {
-					callback({ success: false, error: "Not in a room" });
+					safeCallback(callback, { success: false, error: "Not in a room" });
 					return;
 				}
 
 				const room = GAME.getRoom(info.roomCode);
 				if (!room || room.hostId !== info.playerId) {
-					callback({ success: false, error: "Only host can restart" });
+					safeCallback(callback, {
+						success: false,
+						error: "Only host can restart",
+					});
 					return;
 				}
 
@@ -474,9 +502,9 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 						io.to(socketId).emit("room:rejoin");
 					}
 
-					callback({ success: true });
+					safeCallback(callback, { success: true });
 				} catch (err) {
-					callback({
+					safeCallback(callback, {
 						success: false,
 						error: err instanceof Error ? err.message : "Unknown error",
 					});
@@ -491,7 +519,7 @@ export function setupConnectionHandlers(io: import("socket.io").Server): void {
 			if (!info?.roomCode || !info.playerId) return;
 
 			const playerCount = getPlayerCountInRoom(state, info.roomCode);
-			emitRoomUpdate(io, info.roomCode, "room:player-left", {
+			safeEmit(io, info.roomCode, "room:player-left", {
 				playerId: info.playerId,
 				playerName: info.playerName,
 				playerCount,
@@ -514,7 +542,11 @@ function startGameTimer(
 
 	const interval = setInterval(() => {
 		const currentRoom = GAME.getRoom(roomCode);
-		if (!currentRoom || currentRoom.state !== "playing" || !currentRoom.currentRound) {
+		if (
+			!currentRoom ||
+			currentRoom.state !== "playing" ||
+			!currentRoom.currentRound
+		) {
 			clearInterval(interval);
 			roomTimers.delete(roomCode);
 			return;
@@ -572,7 +604,9 @@ function checkRoundCompletion(
 	if (round.phase !== "vote") return;
 
 	const players = Array.from(room.players.values());
-	const disciples = players.filter((p) => p.role === "disciple" && p.isConnected);
+	const disciples = players.filter(
+		(p) => p.role === "disciple" && p.isConnected,
+	);
 	const judas = players.find((p) => p.role === "judas");
 
 	const allDisciplesVoted = disciples.every((p) => p.vote);
@@ -589,10 +623,7 @@ function checkRoundCompletion(
 	}
 }
 
-function triggerReveal(
-	io: import("socket.io").Server,
-	roomCode: string,
-): void {
+function triggerReveal(io: import("socket.io").Server, roomCode: string): void {
 	const room = GAME.getRoom(roomCode);
 	if (!room || room.state !== "playing" || !room.currentRound) return;
 

@@ -65,7 +65,9 @@ export default function GamePage() {
 	const [hasVoted, setHasVoted] = useState(false);
 	const [hasGuessed, setHasGuessed] = useState(false);
 	const [showCharactersDialog, setShowCharactersDialog] = useState(false);
-	const [selectedStoryForChars, setSelectedStoryForChars] = useState<string | null>(null);
+	const [selectedStoryForChars, setSelectedStoryForChars] = useState<
+		string | null
+	>(null);
 	const [revealData, setRevealData] = useState<{
 		judasId: string;
 		judasName: string;
@@ -94,7 +96,7 @@ export default function GamePage() {
 		.filter((p) => p.id !== playerId)
 		.map((player) => ({ value: player.id, label: player.name }));
 
-const storyItems = allStories
+	const storyItems = allStories
 		.map((s) => ({ value: s.id, label: s.title }))
 		.sort((a, b) => a.label.localeCompare(b.label, locale));
 
@@ -458,7 +460,8 @@ const storyItems = allStories
 										>
 											<DialogTrigger
 												render={
-													<span
+													<button
+														type="button"
 														className={cn(
 															"cursor-pointer rounded-md border px-2 py-1 text-xs",
 															gameData.role === "disciple" &&
@@ -468,7 +471,7 @@ const storyItems = allStories
 														)}
 													>
 														{s.title}
-													</span>
+													</button>
 												}
 											/>
 											<DialogContent className="max-h-[80vh] overflow-y-auto">
@@ -488,9 +491,7 @@ const storyItems = allStories
 																key={char.id}
 																className="flex items-center gap-3 rounded-lg border p-3"
 															>
-																<span className="font-medium">
-																	{char.name}
-																</span>
+																<span className="font-medium">{char.name}</span>
 															</div>
 														))}
 													</div>

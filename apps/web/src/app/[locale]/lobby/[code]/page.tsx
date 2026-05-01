@@ -30,14 +30,8 @@ export default function LobbyPage() {
 	const _locale = useLocale();
 	const params = useParams();
 	const router = useRouter();
-	const {
-		emit,
-		socket,
-		on,
-		isConnected,
-		connectionError,
-		multipleSessionsReason,
-	} = useSocket();
+	const { emit, on, isConnected, connectionError, multipleSessionsReason } =
+		useSocket();
 
 	const roomCode = params.code as string;
 	const [players, setPlayers] = useState<Player[]>([]);
@@ -225,10 +219,10 @@ export default function LobbyPage() {
 		setError("");
 
 		try {
-			const response = await emit<unknown, { success: boolean; error?: string }>(
-				"game:start",
-				undefined
-			);
+			const response = await emit<
+				unknown,
+				{ success: boolean; error?: string }
+			>("game:start", undefined);
 			if (!response.success) {
 				setError(
 					translateError(response.error, t) || t("common.failedToStart"),
@@ -241,15 +235,18 @@ export default function LobbyPage() {
 		}
 	};
 
-	const handleLeave = () => {
+	const handleLeave = async () => {
 		console.log("Leaving room...");
 		localStorage.removeItem("playerId");
 
-		if (socket) {
-			socket.emit("room:leave");
+		try {
+			await emit<unknown, { success: boolean; error?: string }>(
+				"room:leave",
+				undefined,
+			);
 			console.log("Leave room emitted");
-		} else {
-			console.warn("Socket not available to emit leave room");
+		} catch (err) {
+			console.error("Failed to leave room:", err);
 		}
 
 		router.push("/");
@@ -428,8 +425,13 @@ export default function LobbyPage() {
 							</div>
 						))}
 					</div>
+					{!isHost && players.length >= 3 && (
+						<p className="text-center text-muted-foreground text-sm pt-2">
+							{t("lobby.waitingForHost")}
+						</p>
+					)}
 					{players.length < 3 && (
-						<p className="text-center text-muted-foreground text-sm">
+						<p className="text-center text-muted-foreground text-sm pt-2">
 							{t("lobby.minPlayersRequired")}
 						</p>
 					)}
@@ -453,12 +455,6 @@ export default function LobbyPage() {
 						</Button>
 					)}
 				</div>
-
-				{!isHost && players.length >= 3 && (
-					<p className="text-center text-muted-foreground text-sm">
-						{t("lobby.waitingForHost")}
-					</p>
-				)}
 			</div>
 		</div>
 	);
