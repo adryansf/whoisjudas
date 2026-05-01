@@ -3,19 +3,14 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "tsx watch server.ts",
+		"dev": "next dev",
 		"build": "next build && tsc",
 		"start": "next start",
 		"check-types": "tsc --noEmit"
 	},
-	"main": "dist/server.js",
 	"dependencies": {
-		"@orpc/client": "catalog:",
-		"@orpc/openapi": "catalog:",
-		"@orpc/server": "catalog:",
-		"@orpc/tanstack-query": "^1.13.6",
-		"@orpc/zod": "catalog:",
 		"@tanstack/react-query": "^5.90.12",
+		"@vercel/analytics": "^2.0.1",
 		"@whoisjudas/data": "workspace:*",
 		"@whoisjudas/env": "workspace:*",
 		"@whoisjudas/game": "workspace:*",
@@ -41,7 +36,6 @@
 		"@types/react-dom": "catalog:",
 		"@whoisjudas/config": "workspace:*",
 		"tailwindcss": "catalog:",
-		"tsx": "^4.19.0",
 		"typescript": "^5"
 	}
 }

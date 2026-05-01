@@ -59,12 +59,12 @@ export function Lobby({
 			<Card className="max-h-[300px] overflow-y-auto p-4">
 				<PlayerList players={players} hostId={hostId} />
 				{!isHost && players.length >= 3 && (
-					<p className="text-center text-muted-foreground text-sm pt-2">
+					<p className="pt-2 text-center text-muted-foreground text-sm">
 						{t("lobby.waitingForHost")}
 					</p>
 				)}
 				{!canStart && (
-					<p className="text-center text-muted-foreground text-sm pt-2">
+					<p className="pt-2 text-center text-muted-foreground text-sm">
 						{t("lobby.needMorePlayers")}
 					</p>
 				)}
