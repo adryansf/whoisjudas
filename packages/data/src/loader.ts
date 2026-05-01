@@ -19,10 +19,6 @@ const storiesByLocale: Record<"en" | "pt-BR", BiblicalStory[]> = {
 	"pt-BR": ptBRStories.stories,
 };
 
-/**
- * Secure random index using crypto
- * For security-critical random selection
- */
 function secureRandomIndex(max: number): number {
 	if (max <= 0) return 0;
 	const randomBuffer = new Uint32Array(1);

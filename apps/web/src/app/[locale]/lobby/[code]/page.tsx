@@ -426,12 +426,12 @@ export default function LobbyPage() {
 						))}
 					</div>
 					{!isHost && players.length >= 3 && (
-						<p className="text-center text-muted-foreground text-sm pt-2">
+						<p className="pt-2 text-center text-muted-foreground text-sm">
 							{t("lobby.waitingForHost")}
 						</p>
 					)}
 					{players.length < 3 && (
-						<p className="text-center text-muted-foreground text-sm pt-2">
+						<p className="pt-2 text-center text-muted-foreground text-sm">
 							{t("lobby.minPlayersRequired")}
 						</p>
 					)}
