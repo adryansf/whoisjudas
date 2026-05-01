@@ -62,6 +62,11 @@
 		"tieLabel": "Empate:",
 		"tieDesc": "Qualquer outro caso."
 	},
+	"footer": {
+		"developedWith": "Desenvolvido com",
+		"by": "por",
+		"gloryToGod": "À toda a honra e glória de Deus"
+	},
 	"nav": {
 		"home": "Início"
 	},

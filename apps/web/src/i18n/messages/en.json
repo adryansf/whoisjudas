@@ -62,6 +62,11 @@
 		"tieLabel": "Tie:",
 		"tieDesc": "Any other case."
 	},
+	"footer": {
+		"developedWith": "Developed with",
+		"by": "by",
+		"gloryToGod": "To the glory of God"
+	},
 	"nav": {
 		"home": "Home"
 	},

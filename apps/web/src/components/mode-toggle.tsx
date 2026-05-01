@@ -8,9 +8,11 @@ import {
 	DropdownMenuTrigger,
 } from "@whoisjudas/ui/components/dropdown-menu";
 import { Moon, Sun } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 
 export function ModeToggle() {
+	const t = useTranslations();
 	const { setTheme } = useTheme();
 
 	return (
@@ -22,13 +24,13 @@ export function ModeToggle() {
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end">
 				<DropdownMenuItem onClick={() => setTheme("light")}>
-					Light
+					{t("common.light")}
 				</DropdownMenuItem>
 				<DropdownMenuItem onClick={() => setTheme("dark")}>
-					Dark
+					{t("common.dark")}
 				</DropdownMenuItem>
 				<DropdownMenuItem onClick={() => setTheme("system")}>
-					System
+					{t("common.system")}
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>

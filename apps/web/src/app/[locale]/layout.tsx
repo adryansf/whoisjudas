@@ -8,6 +8,7 @@ import { getMessages } from "next-intl/server";
 import { type Locale, locales } from "@/i18n/config";
 
 import "@/index.css";
+import Footer from "@/components/footer";
 import Header from "@/components/header";
 import Providers from "@/components/providers";
 
@@ -90,9 +91,10 @@ export default async function LocaleLayout({
 				<NextIntlClientProvider messages={messages}>
 					<Providers>
 						<Analytics />
-						<div className="grid h-svh grid-rows-[auto_1fr]">
+						<div className="grid h-svh grid-rows-[auto_1fr_auto]">
 							<Header />
 							{children}
+							<Footer />
 						</div>
 					</Providers>
 				</NextIntlClientProvider>
