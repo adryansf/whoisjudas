@@ -1,6 +1,6 @@
 # whoisjudas Development Guidelines
 
-Auto-generated from all feature plans. Last updated: 2026-04-11
+Auto-generated from all feature plans. Last updated: 2026-04-30
 
 ## Active Technologies
 - TypeScript 5.x + Next.js 15 (App Router), Socket.IO, React Query, shadcn/ui, next-intl, nanoid (001-social-deduction-game)
@@ -12,6 +12,8 @@ Auto-generated from all feature plans. Last updated: 2026-04-11
 - TypeScript 5.x + `@socket.io/server`, `@whoisjudas/game` (004-extract-websocket-server)
 - N/A (in-memory, game state managed by @whoisjudas/game) (004-extract-websocket-server)
 - N/A (in-memory, managed by @whoisjudas/game) (004-extract-websocket-server)
+- TypeScript 5.x + Next.js 16 App Router, shadcn/ui (Dialog component), next-intl (005-rules-modal-button)
+- N/A (i18n translations in JSON files) (005-rules-modal-button)
 
 - TypeScript 5.x + Next.js 16 (App Router), Socket.IO, React Query, shadcn/ui, next-intl (001-social-deduction-game)
 
@@ -32,9 +34,9 @@ npm test && npm run lint
 TypeScript 5.x: Follow standard conventions
 
 ## Recent Changes
+- 005-rules-modal-button: Added TypeScript 5.x + Next.js 16 App Router, shadcn/ui (Dialog component), next-intl
 - 004-extract-websocket-server: Added TypeScript 5.x + `@socket.io/server`, `@whoisjudas/game`
 - 004-extract-websocket-server: Added TypeScript 5.x + `@socket.io/server`, `@whoisjudas/game`
-- 003-fix-multi-tab-socket: Added TypeScript 5.x + Socket.IO, Next.js 16 (App Router)
 
 
 <!-- MANUAL ADDITIONS START -->

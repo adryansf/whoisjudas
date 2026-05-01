@@ -82,6 +82,43 @@ rateLimitCleanupInterval = setInterval(
 );
 
 // =============================================================================
+// SAFE CALLBACK AND EMIT HELPERS
+// =============================================================================
+// Prevents errors in callbacks or emits from crashing the server
+
+function safeCallback<T>(
+	callback: SocketCallback<T> | undefined,
+	response: T,
+): void {
+	if (typeof callback === "function") {
+		try {
+			callback(response);
+		} catch (err) {
+			console.error(
+				"Callback error:",
+				err instanceof Error ? err.message : err,
+			);
+		}
+	}
+}
+
+function safeEmit(
+	io: Server,
+	roomCode: string,
+	event: string,
+	...args: unknown[]
+): void {
+	try {
+		io.to(roomCode).emit(event, ...args);
+	} catch (err) {
+		console.error(
+			`Failed to emit ${event} to ${roomCode}:`,
+			err instanceof Error ? err.message : err,
+		);
+	}
+}
+
+// =============================================================================
 // INPUT VALIDATION SCHEMAS
 // =============================================================================
 // Zod schemas for validating incoming socket events
@@ -245,9 +282,9 @@ async function startRoomTimer(io: Server, roomCode: string) {
 		// Decrement timer and broadcast to all players
 		round.timerRemaining--;
 
-		io.to(roomCode.toUpperCase()).emit("game:timer", {
-			timerRemaining: round.timerRemaining,
-			phase: round.phase,
+		safeEmit(io, roomCode.toUpperCase(), "game:timer", {
+			timerRemaining,
+			phase: "vote",
 		});
 
 		// Timer reached zero - advance phase
@@ -259,7 +296,7 @@ async function startRoomTimer(io: Server, roomCode: string) {
 				round.phaseStartedAt = new Date();
 				round.timerSeconds = VOTE_DURATION_SECONDS;
 
-				io.to(roomCode.toUpperCase()).emit("game:phase-change", {
+				safeEmit(io, roomCode.toUpperCase(), "game:phase-change", {
 					phase: "vote",
 					timerSeconds: VOTE_DURATION_SECONDS,
 				});
@@ -330,7 +367,7 @@ async function triggerReveal(io: Server, roomCode: string) {
 	const judas = room.players.get(round.judasId);
 
 	// Broadcast reveal to all players
-	io.to(roomCode.toUpperCase()).emit("game:reveal", {
+	safeEmit(io, roomCode.toUpperCase(), "game:reveal", {
 		judasId: round.judasId,
 		judasName: judas?.name || "Unknown",
 		storyId: round.storyId,
@@ -433,13 +470,16 @@ app.prepare().then(() => {
 				callback: SocketCallback<CreateRoomResponse>,
 			) => {
 				if (isRateLimited(socket.id)) {
-					callback({ success: false, error: "Too many requests" });
+					safeCallback(callback, {
+						success: false,
+						error: "Too many requests",
+					});
 					return;
 				}
 
 				const result = CreateRoomSchema.safeParse(payload);
 				if (!result.success) {
-					callback({ success: false, error: "Invalid payload" });
+					safeCallback(callback, { success: false, error: "Invalid payload" });
 					return;
 				}
 
@@ -479,7 +519,7 @@ app.prepare().then(() => {
 					// Join the room socket channel
 					socket.join(result.roomCode);
 
-					callback({
+					safeCallback(callback, {
 						success: true,
 						roomCode: result.roomCode,
 						playerId: result.playerId,
@@ -487,7 +527,7 @@ app.prepare().then(() => {
 					});
 				} catch (error) {
 					console.error(`Room creation error: ${error}`);
-					callback({
+					safeCallback(callback, {
 						success: false,
 						error: error instanceof Error ? error.message : "Unknown error",
 					});
@@ -503,13 +543,16 @@ app.prepare().then(() => {
 			"room:join",
 			async (payload: unknown, callback: SocketCallback<JoinRoomResponse>) => {
 				if (isRateLimited(socket.id)) {
-					callback({ success: false, error: "Too many requests" });
+					safeCallback(callback, {
+						success: false,
+						error: "Too many requests",
+					});
 					return;
 				}
 
 				const result = JoinRoomSchema.safeParse(payload);
 				if (!result.success) {
-					callback({ success: false, error: "Invalid payload" });
+					safeCallback(callback, { success: false, error: "Invalid payload" });
 					return;
 				}
 
@@ -537,15 +580,15 @@ app.prepare().then(() => {
 							const room = getRoom(roomCode);
 
 							if (player && room) {
-								io.to(roomCode.toUpperCase()).emit("player:updated", {
+								safeEmit(io, roomCode.toUpperCase(), "player:updated", {
 									player: {
 										id: player.id,
 										name: player.name,
-										isConnected: player.isConnected,
+										isConnected: true,
 									},
 								});
 
-								callback({
+								safeCallback(callback, {
 									success: true,
 									playerId: player.id,
 									players: Array.from(room.players.values()).map((p) => ({
@@ -600,14 +643,14 @@ app.prepare().then(() => {
 						playerCount: result.playerCount,
 					});
 
-					callback({
+					safeCallback(callback, {
 						success: true,
 						playerId: result.player.id,
 						players: result.players,
 						hostId: result.hostId,
 					});
 				} catch (error) {
-					callback({
+					safeCallback(callback, {
 						success: false,
 						error: error instanceof Error ? error.message : "Unknown error",
 					});
@@ -623,13 +666,16 @@ app.prepare().then(() => {
 			"room:reconnect",
 			async (payload: unknown, callback: SocketCallback<ReconnectResponse>) => {
 				if (isRateLimited(socket.id)) {
-					callback({ success: false, error: "Too many requests" });
+					safeCallback(callback, {
+						success: false,
+						error: "Too many requests",
+					});
 					return;
 				}
 
 				const result = ReconnectSchema.safeParse(payload);
 				if (!result.success) {
-					callback({ success: false, error: "Invalid payload" });
+					safeCallback(callback, { success: false, error: "Invalid payload" });
 					return;
 				}
 
@@ -661,9 +707,9 @@ app.prepare().then(() => {
 					}
 
 					socket.join(roomCode.toUpperCase());
-					callback({ success: true, gameState: result });
+					safeCallback(callback, { success: true, gameState: result });
 				} catch (error) {
-					callback({
+					safeCallback(callback, {
 						success: false,
 						error: error instanceof Error ? error.message : "Unknown error",
 					});
@@ -712,16 +758,16 @@ app.prepare().then(() => {
 					}
 
 					if (result) {
-						io.to(playerInfo.roomCode).emit("room:player-left", {
+						safeEmit(io, playerInfo.roomCode, "room:player-left", {
 							playerId: playerInfo.playerId,
 							playerName: result.playerName,
 							playerCount: result.playerCount,
 						});
 
 						if (result.newHostId) {
-							io.to(playerInfo.roomCode).emit("room:host-changed", {
-								newHostId: result.newHostId,
-								newHostName: result.newHostName,
+							safeEmit(io, playerInfo.roomCode, "room:host-changed", {
+								newHostId: newHostId,
+								newHostName: newHost.name,
 							});
 						}
 					}
@@ -739,13 +785,16 @@ app.prepare().then(() => {
 			"room:update-settings",
 			async (payload: unknown, callback: SocketCallback<BaseResponse>) => {
 				if (isRateLimited(socket.id)) {
-					callback({ success: false, error: "Too many requests" });
+					safeCallback(callback, {
+						success: false,
+						error: "Too many requests",
+					});
 					return;
 				}
 
 				const result = UpdateSettingsSchema.safeParse(payload);
 				if (!result.success) {
-					callback({ success: false, error: "Invalid payload" });
+					safeCallback(callback, { success: false, error: "Invalid payload" });
 					return;
 				}
 
@@ -754,20 +803,20 @@ app.prepare().then(() => {
 				try {
 					const playerInfo = socketPlayers.get(socket.id);
 					if (!playerInfo) {
-						callback({ success: false, error: "Not in a room" });
+						safeCallback(callback, { success: false, error: "Not in a room" });
 						return;
 					}
 
 					const { updateSettings } = await import("@whoisjudas/game");
 					updateSettings(roomCode, playerInfo.playerId, settings);
 
-					io.to(roomCode.toUpperCase()).emit("room:settings-updated", {
-						settings,
+					safeEmit(io, roomCode.toUpperCase(), "room:settings-updated", {
+						settings: result.data.settings,
 					});
 
-					callback({ success: true });
+					safeCallback(callback, { success: true });
 				} catch (error) {
-					callback({
+					safeCallback(callback, {
 						success: false,
 						error: error instanceof Error ? error.message : "Unknown error",
 					});
@@ -785,7 +834,7 @@ app.prepare().then(() => {
 				try {
 					const playerInfo = socketPlayers.get(socket.id);
 					if (!playerInfo) {
-						callback({ success: false, error: "Not in a room" });
+						safeCallback(callback, { success: false, error: "Not in a room" });
 						return;
 					}
 
@@ -800,7 +849,7 @@ app.prepare().then(() => {
 						const socketIds = playerSockets.get(playerId);
 						if (socketIds) {
 							for (const socketId of socketIds) {
-								io.to(socketId).emit("game:started", gameState);
+								safeEmit(io, socketId, "game:started", gameState);
 							}
 						}
 					}
@@ -808,9 +857,9 @@ app.prepare().then(() => {
 					// Start the game timer
 					startRoomTimer(io, playerInfo.roomCode);
 
-					callback({ success: true });
+					safeCallback(callback, { success: true });
 				} catch (error) {
-					callback({
+					safeCallback(callback, {
 						success: false,
 						error: error instanceof Error ? error.message : "Unknown error",
 					});
@@ -826,13 +875,16 @@ app.prepare().then(() => {
 			"vote:cast",
 			async (payload: unknown, callback: SocketCallback<VoteResponse>) => {
 				if (isRateLimited(socket.id)) {
-					callback({ success: false, error: "Too many requests" });
+					safeCallback(callback, {
+						success: false,
+						error: "Too many requests",
+					});
 					return;
 				}
 
 				const result = VoteCastSchema.safeParse(payload);
 				if (!result.success) {
-					callback({ success: false, error: "Invalid payload" });
+					safeCallback(callback, { success: false, error: "Invalid payload" });
 					return;
 				}
 
@@ -841,7 +893,7 @@ app.prepare().then(() => {
 				try {
 					const playerInfo = socketPlayers.get(socket.id);
 					if (!playerInfo) {
-						callback({ success: false, error: "Not in a room" });
+						safeCallback(callback, { success: false, error: "Not in a room" });
 						return;
 					}
 
@@ -850,7 +902,10 @@ app.prepare().then(() => {
 
 					// Ensure voting is active
 					if (!room || room.currentRound?.phase !== "vote") {
-						callback({ success: false, error: "Voting not active" });
+						safeCallback(callback, {
+							success: false,
+							error: "Voting not active",
+						});
 						return;
 					}
 
@@ -861,17 +916,17 @@ app.prepare().then(() => {
 					);
 
 					// Broadcast updated vote count
-					io.to(playerInfo.roomCode).emit("vote:update", {
-						votesCounted: result.votesCounted,
-						totalVoters: result.totalVoters,
+					safeEmit(io, playerInfo.roomCode, "vote:update", {
+						votesCounted: gameResult.votesCounted,
+						totalVoters: disciples,
 					});
 
 					// Check if all votes are in - may trigger reveal
 					checkRoundCompletion(io, playerInfo.roomCode);
 
-					callback({ success: true });
+					safeCallback(callback, { success: true });
 				} catch (error) {
-					callback({
+					safeCallback(callback, {
 						success: false,
 						error: error instanceof Error ? error.message : "Unknown error",
 					});
@@ -890,13 +945,16 @@ app.prepare().then(() => {
 				callback: SocketCallback<JudasGuessResponse>,
 			) => {
 				if (isRateLimited(socket.id)) {
-					callback({ success: false, error: "Too many requests" });
+					safeCallback(callback, {
+						success: false,
+						error: "Too many requests",
+					});
 					return;
 				}
 
 				const result = JudasGuessSchema.safeParse(payload);
 				if (!result.success) {
-					callback({ success: false, error: "Invalid payload" });
+					safeCallback(callback, { success: false, error: "Invalid payload" });
 					return;
 				}
 
@@ -905,7 +963,7 @@ app.prepare().then(() => {
 				try {
 					const playerInfo = socketPlayers.get(socket.id);
 					if (!playerInfo) {
-						callback({ success: false, error: "Not in a room" });
+						safeCallback(callback, { success: false, error: "Not in a room" });
 						return;
 					}
 
@@ -914,7 +972,10 @@ app.prepare().then(() => {
 
 					// Ensure guessing is active (during vote phase)
 					if (!room || room.currentRound?.phase !== "vote") {
-						callback({ success: false, error: "Guessing not active" });
+						safeCallback(callback, {
+							success: false,
+							error: "Guessing not active",
+						});
 						return;
 					}
 
@@ -924,12 +985,12 @@ app.prepare().then(() => {
 						storyId,
 					);
 
-					callback({ success: true, correct: result.correct });
+					safeCallback(callback, { success: true, correct: result.correct });
 
 					// Check if round is complete - may trigger reveal
 					checkRoundCompletion(io, playerInfo.roomCode);
 				} catch (error) {
-					callback({
+					safeCallback(callback, {
 						success: false,
 						error: error instanceof Error ? error.message : "Unknown error",
 					});
@@ -945,14 +1006,17 @@ app.prepare().then(() => {
 			"game:play-again",
 			async (_payload: unknown, callback: SocketCallback<BaseResponse>) => {
 				if (isRateLimited(socket.id)) {
-					callback({ success: false, error: "Too many requests" });
+					safeCallback(callback, {
+						success: false,
+						error: "Too many requests",
+					});
 					return;
 				}
 
 				try {
 					const playerInfo = socketPlayers.get(socket.id);
 					if (!playerInfo) {
-						callback({ success: false, error: "Not in a room" });
+						safeCallback(callback, { success: false, error: "Not in a room" });
 						return;
 					}
 
@@ -961,18 +1025,21 @@ app.prepare().then(() => {
 
 					// Only host can restart the game
 					if (room && room.hostId !== playerInfo.playerId) {
-						callback({ success: false, error: "Only host can restart" });
+						safeCallback(callback, {
+							success: false,
+							error: "Only host can restart",
+						});
 						return;
 					}
 
 					playAgain(playerInfo.roomCode);
 
 					// Send all players back to the lobby
-					io.to(playerInfo.roomCode.toUpperCase()).emit("room:rejoin");
+					safeEmit(io, playerInfo.roomCode.toUpperCase(), "room:rejoin");
 
-					callback({ success: true });
+					safeCallback(callback, { success: true });
 				} catch (error) {
-					callback({
+					safeCallback(callback, {
 						success: false,
 						error: error instanceof Error ? error.message : "Unknown error",
 					});
@@ -1012,7 +1079,7 @@ app.prepare().then(() => {
 							);
 
 							if (result) {
-								io.to(playerInfo.roomCode).emit("room:player-left", {
+								safeEmit(io, playerInfo.roomCode, "room:player-left", {
 									playerId: playerInfo.playerId,
 									playerName: result.playerName,
 									playerCount: result.playerCount,
@@ -1020,7 +1087,7 @@ app.prepare().then(() => {
 
 								// Host left - assign new host
 								if (result.newHostId) {
-									io.to(playerInfo.roomCode).emit("room:host-changed", {
+									safeEmit(io, playerInfo.roomCode, "room:host-changed", {
 										newHostId: result.newHostId,
 										newHostName: result.newHostName,
 									});
@@ -1029,9 +1096,9 @@ app.prepare().then(() => {
 						} else {
 							// Has other sockets - just notify that player left this room
 							if (room.players.has(playerInfo.playerId)) {
-								io.to(playerInfo.roomCode).emit("room:player-left", {
+								safeEmit(io, playerInfo.roomCode, "room:player-left", {
 									playerId: playerInfo.playerId,
-									playerName: room.players.get(playerInfo.playerId)?.name,
+									playerName: existingPlayer?.name || "Unknown",
 									playerCount: room.players.size,
 								});
 							}
@@ -1043,7 +1110,7 @@ app.prepare().then(() => {
 						const { setPlayerDisconnected } = await import("@whoisjudas/game");
 						setPlayerDisconnected(playerInfo.roomCode, playerInfo.playerId);
 
-						io.to(playerInfo.roomCode).emit("room:player-left", {
+						safeEmit(io, playerInfo.roomCode, "room:player-left", {
 							playerId: playerInfo.playerId,
 							playerName:
 								room.players.get(playerInfo.playerId)?.name || "Unknown",
