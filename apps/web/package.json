@@ -9,11 +9,6 @@
 		"check-types": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@orpc/client": "catalog:",
-		"@orpc/openapi": "catalog:",
-		"@orpc/server": "catalog:",
-		"@orpc/tanstack-query": "^1.13.6",
-		"@orpc/zod": "catalog:",
 		"@tanstack/react-query": "^5.90.12",
 		"@vercel/analytics": "^2.0.1",
 		"@whoisjudas/data": "workspace:*",

@@ -1,148 +1,98 @@
-# WhoIsJudas
+# Who Is Judas? / Quem é Judas?
 
-A real-time multiplayer social deduction game built with Next.js and Socket.IO. Players join rooms, receive roles, and must identify the traitor among them.
+A real-time multiplayer biblical social deduction game built with Next.js and Socket.IO.
 
-## Features
+**Live:** https://whoisjudas.adryanfreitas.dev/
+
+---
+
+## Features / Funcionalidades
 
 - **Real-time Multiplayer** - Socket.IO powered instant communication
-- **Role-based Gameplay** - Unique abilities for each player role
+- **Real-time Multiplayer** - Comunicação instantânea via Socket.IO
+- **Role-based Gameplay** - Unique abilities for each player role (Judas vs Disciples)
+- **Gameplay por Papéis** - Habilidades únicas para cada papel (Judas vs Discípulos)
 - **Multi-tab Support** - Play from multiple browser tabs without conflicts
+- **Suporte Multi-tab** - Jogue de múltiplas abas do navegador sem conflitos
 - **Session Persistence** - Reconnect seamlessly after connection drops
-- **TypeScript** - Full type safety across client and server
-- **Shared UI Components** - shadcn/ui primitives in a centralized package
+- **Persistência de Sessão** - Reconecte-se facilmente após queda de conexão
+- **i18n** - English and Portuguese (pt-BR) support
+- **i18n** - Suporte a Inglês e Português (pt-BR)
+- **PWA** - Installable as a mobile app
+- **PWA** - Instalável como aplicativo móvel
 
-## Tech Stack
+## Tech Stack / Pilha Tecnológica
 
 - **Framework**: Next.js 16 (App Router)
 - **Real-time**: Socket.IO 4.x
 - **Styling**: TailwindCSS + shadcn/ui
-- **API**: ORPC (end-to-end type-safe APIs)
 - **State Management**: TanStack Query
 - **Internationalization**: next-intl
-- **Database**: PostgreSQL with Drizzle ORM
+- **Analytics**: @vercel/analytics
 
-## Getting Started
+## Getting Started / Como Começar
 
-### Prerequisites
+### Prerequisites / Pré-requisitos
 
 - Node.js 20+
 - pnpm 9+
-- PostgreSQL database
 
-### Installation
+### Installation / Instalação
 
 ```bash
-# Install dependencies
+# Install dependencies / Instalar dependências
 pnpm install
 
-# Configure environment
-cp .env.example .env
-# Edit .env with your database connection string
-
-# Push schema to database
-pnpm run db:push
-```
-
-### Development
-
-```bash
-# Start all applications in development mode
+# Start development / Iniciar desenvolvimento
 pnpm run dev
-
-# Start only the web application
-pnpm run dev:web
 ```
 
-Open [http://localhost:3001](http://localhost:3001) in your browser.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
 
-## Project Structure
+## Project Structure / Estrutura do Projeto
 
 ```
 whoisjudas/
 ├── apps/
-│   └── web/                 # Fullstack Next.js application
-│       ├── server.ts        # Socket.IO server
-│       └── src/             # Next.js app router
+│   ├── web/                 # Next.js frontend
+│   └── server/              # Socket.IO server
 ├── packages/
 │   ├── ui/                  # Shared shadcn/ui components
-│   ├── game/                # Game logic and state
-│   ├── data/                # Database schema & queries
-│   ├── api/                 # API layer
+│   ├── game/                # Game logic and state / Lógica do jogo
+│   ├── data/                # Story/character JSON data
 │   ├── env/                 # Environment configuration
 │   └── config/              # Shared configs
 └── specs/                   # Feature specifications
 ```
 
-## Game Rules
+## Game Rules / Regras do Jogo
 
-Players are divided into two teams: **Villagers** and **Judas** (the traitor). The villagers must identify the Judas before time runs out, while the Judas must evade detection.
+Players are divided into two teams:
 
-### Win Conditions
+Os jogadores são divididos em duas equipes:
 
-- **Villagers Win**: Identify and vote out the Judas
-- **Judas Wins**: Survive until the end or blend in during final vote
+- **Disciples / Discípulos** - Must identify and vote out the Judas
+  Devem identificar e votar para fora o Judas
+- **Judas** - Must blend in and avoid being voted out
+  Deve se esconder e não ser votada para fora
 
-## Available Scripts
+### Win Conditions / Condições de Vitória
+
+- **Disciples Win**: Identify and vote out the Judas
+- **Discípulos vencem**: Identificar e votar fora o Judas
+- **Judas Wins**: Survive the voting
+- **Judas vence**: Sobreviver à votação
+
+## Available Scripts / Scripts Disponíveis
 
 | Command | Description |
 |---------|-------------|
 | `pnpm run dev` | Start all applications in development mode |
 | `pnpm run build` | Build all applications |
-| `pnpm run dev:web` | Start only the web application |
-| `pnpm run check-types` | Check TypeScript types across all apps |
-| `pnpm run db:push` | Push schema changes to database |
-| `pnpm run db:generate` | Generate database client/types |
-| `pnpm run db:migrate` | Run database migrations |
-| `pnpm run db:studio` | Open database studio UI |
 | `pnpm run check` | Run Biome formatting and linting |
-| `cd apps/web && pnpm run generate-pwa-assets` | Generate PWA assets |
 
-## UI Customization
-
-### Design Tokens
-
-Change global styles and design tokens in:
-
-```bash
-packages/ui/src/styles/globals.css
-```
-
-### Adding Components
-
-Add shared primitives to the UI package:
-
-```bash
-npx shadcn@latest add accordion dialog popover sheet table -c packages/ui
-```
-
-Import shared components:
-
-```tsx
-import { Button } from "@whoisjudas/ui/components/button";
-```
-
-## Socket.IO Events
-
-### Client → Server
-
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `room:join` | `{ roomId, playerName }` | Join a game room |
-| `room:reconnect` | `{ roomId, playerId }` | Reconnect to existing session |
-| `room:ready` | `{}` | Player is ready to start |
-| `room:vote` | `{ targetId }` | Vote for a player |
-| `room:ability` | `{ targetId }` | Use role ability |
-
-### Server → Client
-
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `room:state` | `GameState` | Full game state update |
-| `room:player-joined` | `Player` | New player joined |
-| `room:player-left` | `{ playerId }` | Player left/disconnected |
-| `room:kicked` | `{ reason }` | Kicked from room |
-| `room:error` | `{ message }` | Error occurred |
-
-## License
+## License / Licença
 
 Private project - all rights reserved
+Projeto privado - todos os direitos reservados
