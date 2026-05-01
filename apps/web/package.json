@@ -3,12 +3,11 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "tsx watch server.ts",
+		"dev": "next dev",
 		"build": "next build && tsc",
 		"start": "next start",
 		"check-types": "tsc --noEmit"
 	},
-	"main": "dist/server.js",
 	"dependencies": {
 		"@orpc/client": "catalog:",
 		"@orpc/openapi": "catalog:",
@@ -42,7 +41,6 @@
 		"@types/react-dom": "catalog:",
 		"@whoisjudas/config": "workspace:*",
 		"tailwindcss": "catalog:",
-		"tsx": "^4.19.0",
 		"typescript": "^5"
 	}
 }
