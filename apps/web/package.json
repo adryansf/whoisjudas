@@ -16,6 +16,7 @@
 		"@orpc/tanstack-query": "^1.13.6",
 		"@orpc/zod": "catalog:",
 		"@tanstack/react-query": "^5.90.12",
+		"@vercel/analytics": "^2.0.1",
 		"@whoisjudas/data": "workspace:*",
 		"@whoisjudas/env": "workspace:*",
 		"@whoisjudas/game": "workspace:*",
